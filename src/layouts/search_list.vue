@@ -1,10 +1,10 @@
 <template>
   <q-list
     link
-    striped-odd="True"
+    :striped-odd="true"
     separator
   >
-    <q-list-header inset="True">搜索结果列表 :</q-list-header>
+    <q-list-header :inset="true">搜索结果列表 :</q-list-header>
     <q-item @click.native="openURL('http://quasar-framework.org')">
       <q-item-main  label="建设银行" />
     </q-item>

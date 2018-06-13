@@ -49,13 +49,20 @@ module.exports = function (ctx) {
         'QToolbarTitle',
         'QBtn',
         'QBtnDropdown',
+        'QBtnGroup',
         'QIcon',
         'QList',
         'QListHeader',
         'QItem',
         'QItemMain',
         'QItemSide',
-        'QDatetime'
+        'QItemSeparator',
+        'QDatetime',
+        'QDialog',
+        'QField',
+        'QInput',
+        'QPopover'
+
       ],
       directives: [
         'Ripple'
