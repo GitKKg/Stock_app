@@ -1,40 +1,22 @@
 <template>
+  <q-item v-close-overlay>
   <q-item-main>
-  <q-btn label="爬取新浪时间设置" @click="open_dialog = true"></q-btn>
-  <q-dialog
-    v-model="open_dialog"
-    stack-buttons
-    prevent-close
-    @ok="onOk"
-    @cancel="onCancel"
-    @show="onShow"
-    @hide="onHide"
-  >
-    <!-- 这里可能使用<q-dialog>的"title"属性 -->
-    <span slot="title">Favorite Superhero</span>
+    <q-btn label="爬取新浪时间设置" @click="maximizedModal = true" color="blue"></q-btn>
+    <q-modal v-model="maximizedModal"  maximized  no-backdrop-dismiss>
+      <q-modal-layout class="bg-grey">
+        <h5 style="color: blue">设置起始和结束时间:</h5>
+        <q-datetime v-model="date_start" inverted color="blue" type="date" placeholder="开始时间"/>
+        <q-datetime v-model="date_end" inverted color="blue" type="date" placeholder="结束时间"/>
 
-    <!-- 这里可能使用<q-dialog>的"message"属性 -->
-    <span slot="message">What is your superhero of choice?</span>
+        <q-btn color="tertiary" @click="maximizedModal = false" label="Close" />
+        <p>设置完毕点击开始爬取</p>
+        <q-btn color="tertiary" @click="onOK" label="开始爬取" />
 
-    <div slot="body">
-      <q-field
-        icon="account_circle"
-        helper="We need your name so we can send you to the movies."
-        label="Your name"
-        :label-width="3"
-      >
-        <q-input v-model="name" />
-      </q-field>
-    </div>
+      </q-modal-layout>
 
-    <template slot="buttons" slot-scope="props">
-      <q-btn color="primary" label="Choose Superman" @click="choose(props.ok, 'Superman')" />
-      <q-btn color="black" label="Choose Batman" @click="choose(props.ok, 'Batman')" />
-      <q-btn color="negative" label="Choose Spiderman" @click="choose(props.ok, 'Spiderman')" />
-      <q-btn flat label="No thanks" @click="props.cancel" />
-    </template>
-  </q-dialog>
-    </q-item-main>
+    </q-modal>
+  </q-item-main>
+  </q-item>
 </template>
 
 <script>
@@ -42,16 +24,24 @@ export default {
   name: 'date_setting_dialog',
   data: function () {
     return {
-      open_dialog: false,
-      name: ''
+      maximizedModal: false,
+      name: '',
+      date_start: null,
+      date_end: null
     }
   },
   methods: {
     // 当props.ok()被调用
-    onOk (data) { },
+    onOK: function () {
+      if (this.date_start == null | this.date_end == null | this.date_start > this.date_end) {
+        alert('时间设置范围错误，请重设')
+      } else {
+        this.maximizedModal = false
+      }
+    },
 
     // 当props.cancel()被调用
-    onCancel () {this.date_dialog_open=false },
+    onCancel () { },
 
     // 当我们展示给用户时
     onShow () { },

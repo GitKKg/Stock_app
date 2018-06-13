@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <qheader v-bind:isnowsearching="isnowsearching"></qheader>
+    <qheader v-bind:Pisnowsearching="isnowsearching"></qheader>
     <q-layout-drawer
       v-model="leftDrawerOpen"
       :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
