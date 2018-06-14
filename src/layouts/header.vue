@@ -5,15 +5,13 @@
       <q-btn label="开始扫描" v-bind:disable="Pisnowsearching" color="primary"/>
       <q-btn label="爬取数据"  color="primary">
         <q-popover>
-        <q-list>
-
+          <q-list>
             <date_setting_dialog></date_setting_dialog>
-
-          <q-item>
-            <q-item-main>
-              <q-btn label="存储爬网数据到服务器" color="blue" />
-            </q-item-main>
-          </q-item>
+            <q-item>
+              <q-item-main>
+               <q-btn label="存储爬网数据到服务器" color="blue" />
+              </q-item-main>
+            </q-item>
           <q-item-separator />
 
           </q-list>

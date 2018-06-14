@@ -20,14 +20,17 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 export default {
   name: 'date_setting_dialog',
   data: function () {
     return {
+      model: new Date(),
       maximizedModal: false,
       name: '',
-      date_start: null,
-      date_end: null
+      date_start: new Date(),
+      date_end: new Date()
     }
   },
   methods: {
@@ -36,7 +39,32 @@ export default {
       if (this.date_start == null | this.date_end == null | this.date_start > this.date_end) {
         alert('时间设置范围错误，请重设')
       } else {
+        function sleep (delay) {
+          var start = new Date().getTime()
+          while (new Date().getTime() < start + delay);
+        }
+        console.log(typeof (this.date_start.getFullYear()))
+        axios.get('/', {
+          params: {
+            ID: 12345
+          }
+        })
+        axios.post('/spider', {
+          startyear: this.date_start.getFullYear(),
+          startmonth: this.date_start.getMonth(),
+          startday:this.date_start.getDay(),
+          endtyear: this.date_end.getFullYear(),
+          endtmonth: this.date_end.getMonth(),
+          endtday:this.date_end.getDay(),
+        })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         this.maximizedModal = false
+        sleep(1000)
       }
     },
 
