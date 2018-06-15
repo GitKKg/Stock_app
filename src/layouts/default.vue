@@ -3,7 +3,7 @@
     <qheader v-bind:Pisnowsearching="isnowsearching"></qheader>
     <q-layout-drawer
       v-model="leftDrawerOpen"
-      :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
+      :content-class="$q.theme === 'mat' ? 'bg-light-blue' : null"
     >
       <search_list></search_list>
     </q-layout-drawer>

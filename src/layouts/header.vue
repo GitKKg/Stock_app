@@ -4,7 +4,7 @@
       <q-btn label="加载数据库" color="red" />
       <q-btn label="开始扫描" v-bind:disable="Pisnowsearching" color="primary"/>
       <q-btn label="爬取数据"  color="primary">
-        <q-popover>
+        <q-popover :disable="false">
           <q-list>
             <date_setting_dialog></date_setting_dialog>
             <q-item>
@@ -47,5 +47,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .q-list {
+      background-color: dodgerblue;
+  };
 </style>

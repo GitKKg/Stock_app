@@ -36,33 +36,40 @@ export default {
   methods: {
     // 当props.ok()被调用
     onOK: function () {
-      if (this.date_start == null | this.date_end == null | this.date_start > this.date_end) {
+      if (this.date_start == null | this.date_end == null | this.date_start >= this.date_end) {
         alert('时间设置范围错误，请重设')
       } else {
         function sleep (delay) {
           var start = new Date().getTime()
           while (new Date().getTime() < start + delay);
         }
-        console.log(typeof (this.date_start.getFullYear()))
-        axios.get('/', {
+
+        axios.get('/spider', {
           params: {
             ID: 12345
           }
         })
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+
         axios.post('/spider', {
           startyear: this.date_start.getFullYear(),
           startmonth: this.date_start.getMonth(),
-          startday:this.date_start.getDay(),
+          startday: this.date_start.getDay(),
           endtyear: this.date_end.getFullYear(),
           endtmonth: this.date_end.getMonth(),
-          endtday:this.date_end.getDay(),
+          endtday: this.date_end.getDay()
         })
           .then(function (response) {
-            console.log(response);
+            console.log(response)
           })
           .catch(function (error) {
-            console.log(error);
-          });
+            console.log(error)
+          })
         this.maximizedModal = false
         sleep(1000)
       }

@@ -31,6 +31,6 @@ export default {
 
 <style scoped>
   .q-list {
-    color: red;
+//    background-color: blue;
   };
 </style>
