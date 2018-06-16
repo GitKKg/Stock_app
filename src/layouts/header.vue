@@ -32,7 +32,7 @@ export default {
   props: ['Pisnowsearching'],
   data: function () {
     return {
-      datesetting: new Date(),
+      datesetting: new Date()
     }
   },
   computed: {
@@ -48,6 +48,6 @@ export default {
 
 <style scoped>
   .q-list {
-      background-color: dodgerblue;`
+      background-color: dodgerblue;
   };
 </style>
