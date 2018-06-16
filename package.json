@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "coroutine": "^0.3.1"
+    "coroutine": "^0.3.1",
+    "socket.io": "^2.1.1",
+    "vue-socket.io": "^2.1.1-b"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

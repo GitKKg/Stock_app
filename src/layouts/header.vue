@@ -48,6 +48,6 @@ export default {
 
 <style scoped>
   .q-list {
-      background-color: dodgerblue;
+      background-color: dodgerblue;`
   };
 </style>
