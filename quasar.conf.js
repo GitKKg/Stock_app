@@ -43,6 +43,7 @@ module.exports = function (ctx) {
         'QLayout',
         'QLayoutHeader',
         'QLayoutDrawer',
+        'QLayoutFooter',
         'QPageContainer',
         'QPage',
         'QToolbar',
@@ -63,8 +64,8 @@ module.exports = function (ctx) {
         'QInput',
         'QPopover',
         'QModal',
-        'QModalLayout'
-
+        'QModalLayout',
+        'QProgress'
       ],
       directives: [
         'Ripple',

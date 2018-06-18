@@ -22,11 +22,13 @@
 <script>
 
 import axios from 'axios'
+import io from 'socket.io-client'
+import gv from '../global/common_sym'
+
 export default {
   name: 'date_setting_dialog',
   data: function () {
     return {
-      model: new Date(),
       maximizedModal: false,
       name: '',
       date_start: new Date(),
@@ -43,33 +45,16 @@ export default {
           var start = new Date().getTime()
           while (new Date().getTime() < start + delay);
         }
-
-        axios.get('/spider', {
-          params: {
-            ID: 12345
-          }
+        var current_url = window.location.host
+        console.log(current_url)
+        console.log(gv.wsocket)
+        if (gv.wsocket == null) {
+          gv.wsocket = io('http://'+current_url+':85')
+        }
+        gv.wsocket.on('news', function (data) {
+          console.log(data)
         })
-          .then(function (response) {
-            console.log(response)
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
 
-        axios.post('/spider', {
-          startyear: this.date_start.getFullYear(),
-          startmonth: this.date_start.getMonth(),
-          startday: this.date_start.getDay(),
-          endtyear: this.date_end.getFullYear(),
-          endtmonth: this.date_end.getMonth(),
-          endtday: this.date_end.getDay()
-        })
-          .then(function (response) {
-            console.log(response)
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
         this.maximizedModal = false
         sleep(1000)
       }

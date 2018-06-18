@@ -10,7 +10,16 @@
 
     <q-page-container>
       <router-view />
+      <q-page>hello</q-page>
     </q-page-container>
+    <q-layout-footer>
+      <q-progress
+        :percentage=50
+        stripe
+        animate
+        height="45px"
+      />
+    </q-layout-footer>
   </q-layout>
 </template>
 
@@ -26,8 +35,8 @@ export default {
   },
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
-      isnowsearching:true
+      leftDrawerOpen: true, // this.$q.platform.is.desktop,
+      isnowsearching: true
     }
   },
   methods: {
