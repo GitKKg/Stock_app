@@ -1,18 +1,23 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf">
     <qheader v-bind:Pisnowsearching="isnowsearching"></qheader>
     <q-layout-drawer
-      v-model="leftDrawerOpen"
+      v-bind:value="gv.leftDrawerOpen"
+      side="left"
       :content-class="$q.theme === 'mat' ? 'bg-light-blue' : null"
+      :breakpoint="50"
     >
       <search_list></search_list>
     </q-layout-drawer>
 
     <q-page-container>
       <router-view />
-      <q-page>hello</q-page>
+      <q-page>
+
+      </q-page>
     </q-page-container>
     <q-layout-footer>
+      <p>建设银行</p>
       <q-progress
         :percentage=50
         stripe
@@ -27,20 +32,24 @@
 import { openURL } from 'quasar'
 import qheader from './header.vue'
 import search_list from './search_list.vue'
+import gv from '../global/common_sym'
 export default {
   name: 'LayoutDefault',
   components: {
     search_list,
     qheader
   },
-  data () {
+  data: function () {
     return {
-      leftDrawerOpen: true, // this.$q.platform.is.desktop,
+      gv: gv,
       isnowsearching: true
     }
   },
   methods: {
     openURL
+  },
+  created:function(){
+    this.$set(this.gv,'leftDrawerOpen',true)
   }
 }
 </script>

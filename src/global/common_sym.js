@@ -1,5 +1,6 @@
 var gv = {
-  wsocket: null
+  wsocket: null,
+  leftDrawerOpen:false
 }
 export default
 {

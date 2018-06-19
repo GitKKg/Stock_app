@@ -1,6 +1,7 @@
 <template>
   <q-layout-header>
     <q-btn-group class="row">
+      <q-btn label="显示扫描列表" color="red" @click="onshowlist" />
       <q-btn label="加载数据库" color="red" />
       <q-btn label="开始扫描" v-bind:disable="Pisnowsearching" color="primary"/>
       <q-btn label="爬取数据"  color="primary">
@@ -24,15 +25,17 @@
 <script>
 import { date } from 'quasar'
 import date_setting_dialog from './date_setting_dialog.vue'
+import gv from '../global/common_sym'
 export default {
   name: 'qheader',
   components: {
     date_setting_dialog
   },
-  props: ['Pisnowsearching'],
+  props: {'Pisnowsearching':Boolean},
   data: function () {
     return {
-      datesetting: new Date()
+      datesetting: new Date(),
+      gv:gv
     }
   },
   computed: {
@@ -41,6 +44,11 @@ export default {
       // `this` points to the vm instance
       return date.formatDate(this.datesetting, 'YYYY-MM-DD')
     }
+  },
+  methods: {
+    onshowlist: function () {
+      this.gv.leftDrawerOpen=(this.gv.leftDrawerOpen==true?false:true)
+  }
   }
 
 }

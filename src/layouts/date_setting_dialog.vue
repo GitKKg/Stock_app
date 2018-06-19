@@ -49,7 +49,7 @@ export default {
         console.log(current_url)
         console.log(gv.wsocket)
         if (gv.wsocket == null) {
-          gv.wsocket = io('http://'+current_url+':85')
+          gv.wsocket = io('http://' + current_url)// current_url include port number
         }
         gv.wsocket.on('news', function (data) {
           console.log(data)
