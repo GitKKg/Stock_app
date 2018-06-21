@@ -31,7 +31,7 @@
 <script>
 import { openURL } from 'quasar'
 import qheader from './header.vue'
-import search_list from './search_list.vue'
+import search_list from '../components/search_list.vue'
 import gv from '../global/common_sym'
 export default {
   name: 'LayoutDefault',

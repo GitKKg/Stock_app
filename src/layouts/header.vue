@@ -24,7 +24,7 @@
 
 <script>
 import { date } from 'quasar'
-import date_setting_dialog from './date_setting_dialog.vue'
+import date_setting_dialog from '../components/date_setting_dialog.vue'
 import gv from '../global/common_sym'
 export default {
   name: 'qheader',

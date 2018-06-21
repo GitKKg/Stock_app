@@ -1,6 +1,7 @@
 var gv = {
-  wsocket: null,
-  leftDrawerOpen:false
+  wsocket: false,
+  leftDrawerOpen: false,
+  manager:false
 }
 export default
 {

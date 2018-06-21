@@ -23,6 +23,7 @@
 
 import axios from 'axios'
 import io from 'socket.io-client'
+import manager from 'socket.io-client'
 import gv from '../global/common_sym'
 
 export default {
@@ -49,10 +50,10 @@ export default {
         console.log(current_url)
         console.log(gv.wsocket)
         if (gv.wsocket == null) {
-          gv.wsocket = io('http://' + current_url)// current_url include port number
+          gv.wsocket = new io.connect('http://' + current_url,{'reconnection':false})// current_url include port number
         }
-        gv.wsocket.on('news', function (data) {
-          console.log(data)
+        gv.wsocket.on('connect', function () {
+          console.log(gv.wsocket.id)
         })
 
         this.maximizedModal = false
