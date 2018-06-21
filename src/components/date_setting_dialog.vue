@@ -70,7 +70,7 @@ export default {
         console.log(gv.wsocket.id)
       })
       gv.wsocket.emit('spider',date_object)
-     # gv.wsocket.on('progress',function(json){})
+     // gv.wsocket.on('progress',function(json){})
     },
 
     // 当props.cancel()被调用
