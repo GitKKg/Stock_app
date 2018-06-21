@@ -1,14 +1,7 @@
 <template>
   <q-layout view="hHh Lpr lFf">
-    <qheader v-bind:Pisnowsearching="isnowsearching"></qheader>
-    <q-layout-drawer
-      v-bind:value="gv.leftDrawerOpen"
-      side="left"
-      :content-class="$q.theme === 'mat' ? 'bg-light-blue' : null"
-      :breakpoint="50"
-    >
-      <search_list></search_list>
-    </q-layout-drawer>
+    <qheader></qheader>
+    <qleft_drawer></qleft_drawer>
 
     <q-page-container>
       <router-view />
@@ -16,47 +9,33 @@
 
       </q-page>
     </q-page-container>
-    <q-layout-footer>
-      <p>建设银行</p>
-      <q-progress
-        :percentage=50
-        stripe
-        animate
-        height="45px"
-      />
-    </q-layout-footer>
+
+    <qfooter></qfooter>
+
   </q-layout>
 </template>
 
 <script>
 import { openURL } from 'quasar'
 import qheader from './header.vue'
-import search_list from '../components/search_list.vue'
-import gv from '../global/common_sym'
+import qfooter from './footer.vue'
+import qleft_drawer from './left_drawer.vue'
 export default {
   name: 'LayoutDefault',
   components: {
-    search_list,
-    qheader
+    qheader,
+    qfooter,
+    qleft_drawer
   },
   data: function () {
     return {
-      gv: gv,
-      isnowsearching: true
     }
   },
   methods: {
     openURL
-  },
-  created:function(){
-    this.$set(this.gv,'leftDrawerOpen',true)
   }
 }
 </script>
 
 <style scoped>
-  .q-layout-drawer {
-    color: black;
-    background-color: gold;
-  }
 </style>

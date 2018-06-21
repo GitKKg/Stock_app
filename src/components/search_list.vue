@@ -24,8 +24,12 @@
 </template>
 
 <script>
+import { openURL } from 'quasar'
 export default {
-  name: 'search_list'
+  name: 'search_list',
+  methods: {
+    openURL
+  }
 }
 </script>
 

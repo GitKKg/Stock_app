@@ -10,7 +10,7 @@
 
         <q-btn color="tertiary" @click="maximizedModal = false" label="Close" />
         <p>设置完毕点击开始爬取</p>
-        <q-btn color="tertiary" @click="onOK" label="开始爬取" />
+        <q-btn color="tertiary" @click="onSpider" label="开始爬取" />
 
       </q-modal-layout>
 
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     // 当props.ok()被调用
-    onOK: function () {
+    onSpider: function () {
       if (this.date_start == null | this.date_end == null | this.date_start >= this.date_end) {
         alert('时间设置范围错误，请重设')
       } else {
@@ -46,19 +46,31 @@ export default {
           var start = new Date().getTime()
           while (new Date().getTime() < start + delay);
         }
-        var current_url = window.location.host
-        console.log(current_url)
-        console.log(gv.wsocket)
-        if (gv.wsocket == null) {
-          gv.wsocket = new io.connect('http://' + current_url,{'reconnection':false})// current_url include port number
-        }
-        gv.wsocket.on('connect', function () {
-          console.log(gv.wsocket.id)
-        })
 
+        this.startSpider()
         this.maximizedModal = false
         sleep(1000)
       }
+    },
+    startSpider:function ()
+    {
+      let current_url = window.location.host
+      let date_object={
+        'date_start_year':this.date_start.getFullYear(),
+        'date_start_month':this.date_start.getMonth()+1,
+        'date_end_year':this.date_end.getFullYear(),
+        'date_end_month':this.date_end.getMonth()+1
+      }
+      console.log(current_url)
+      console.log(gv.wsocket)
+      if (gv.wsocket == null) {
+        gv.wsocket = new io.connect('http://' + current_url, {'reconnection': false})// current_url include port number
+      }
+      gv.wsocket.on('connect', function () {
+        console.log(gv.wsocket.id)
+      })
+      gv.wsocket.emit('spider',date_object)
+     # gv.wsocket.on('progress',function(json){})
     },
 
     // 当props.cancel()被调用

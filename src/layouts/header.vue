@@ -3,7 +3,7 @@
     <q-btn-group class="row">
       <q-btn label="显示扫描列表" color="red" @click="onshowlist" />
       <q-btn label="加载数据库" color="red" />
-      <q-btn label="开始扫描" v-bind:disable="Pisnowsearching" color="primary"/>
+      <q-btn label="开始扫描" v-bind:disable="true" color="primary"/>
       <q-btn label="爬取数据"  color="primary">
         <q-popover :disable="false">
           <q-list>
@@ -31,11 +31,11 @@ export default {
   components: {
     date_setting_dialog
   },
-  props: {'Pisnowsearching':Boolean},
+  // props: {'Pisnowsearching':Boolean},
   data: function () {
     return {
       datesetting: new Date(),
-      gv:gv
+      gv: gv
     }
   },
   computed: {
@@ -47,8 +47,9 @@ export default {
   },
   methods: {
     onshowlist: function () {
-      this.gv.leftDrawerOpen=(this.gv.leftDrawerOpen==true?false:true)
-  }
+      this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
+      //      this.gv.cuurent_symbol_spidered='招商银行'
+    }
   }
 
 }
