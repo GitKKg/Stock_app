@@ -64,13 +64,16 @@ export default {
       console.log(current_url)
       console.log(gv.wsocket)
       if (gv.wsocket == null) {
-        gv.wsocket = new io.connect('http://' + current_url, {'reconnection': false})// current_url include port number
+        gv.wsocket = new io.connect('http://' + current_url, {'reconnection': true})// current_url include port number
       }
       gv.wsocket.on('connect', function () {
         console.log(gv.wsocket.id)
       })
       gv.wsocket.emit('spider',date_object)
-     // gv.wsocket.on('progress',function(json){})
+      gv.wsocket.on('progress',function(percent){
+        console.log('progress percent is '+percent)
+        gv.spider_progress=percent
+      })
     },
 
     // 当props.cancel()被调用
