@@ -10,7 +10,7 @@
             <date_setting_dialog></date_setting_dialog>
             <q-item>
               <q-item-main>
-               <q-btn label="存储爬网数据到服务器" color="blue" />
+               <q-btn label="存储爬网数据到服务器" v-bind:disable="gv.forbidSaveDB" @click="onSaveDB" color="blue" />
               </q-item-main>
             </q-item>
           <q-item-separator />
@@ -26,6 +26,7 @@
 import { date } from 'quasar'
 import date_setting_dialog from '../components/date_setting_dialog.vue'
 import gv from '../global/common_sym'
+import io from 'socket.io-client'
 export default {
   name: 'qheader',
   components: {
@@ -38,6 +39,9 @@ export default {
       gv: gv
     }
   },
+  created: function () {
+    this.$set(this.gv, 'forbidSaveDB', false)
+  },
   computed: {
     // a computed getter
     datesettingfmt: function () {
@@ -48,10 +52,17 @@ export default {
   methods: {
     onshowlist: function () {
       this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
-      //      this.gv.cuurent_symbol_spidered='招商银行'
-    }
-  }
+    },
+    onSaveDB: function () {
+      gv.wsocket.emit('SaveDB')
+      gv.wsocket.on('DBprogress',
+        function (percent) {
 
+        }
+      )
+    }
+
+  }
 }
 </script>
 

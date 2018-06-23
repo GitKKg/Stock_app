@@ -52,15 +52,15 @@ export default {
         sleep(1000)
       }
     },
-    startSpider:function ()
-    {
+    startSpider: function () {
       let current_url = window.location.host
-      let date_object={
-        'date_start_year':this.date_start.getFullYear(),
-        'date_start_month':this.date_start.getMonth()+1,
-        'date_end_year':this.date_end.getFullYear(),
-        'date_end_month':this.date_end.getMonth()+1
+      let date_object = {
+        'date_start_year': this.date_start.getFullYear(),
+        'date_start_month': this.date_start.getMonth() + 1,
+        'date_end_year': this.date_end.getFullYear(),
+        'date_end_month': this.date_end.getMonth() + 1
       }
+      gv.forbidSaveDB=true
       console.log(current_url)
       console.log(gv.wsocket)
       if (gv.wsocket == null) {
@@ -69,10 +69,18 @@ export default {
       gv.wsocket.on('connect', function () {
         console.log(gv.wsocket.id)
       })
-      gv.wsocket.emit('spider',date_object)
-      gv.wsocket.on('progress',function(percent){
-        console.log('progress percent is '+percent)
-        gv.spider_progress=percent
+      gv.wsocket.emit('spider', date_object)
+      gv.wsocket.on('progress', function (percent) {
+        console.log('progress percent is ' + percent)
+        gv.spider_progress = percent
+      })
+      gv.wsocket.on('stockname', function (name) {
+        console.log('stockname is ' + name)
+        if (name == 'end') {
+          gv.spider_progress = -1
+          gv.cuurent_symbol_spidered = ''
+          gv.forbidSaveDB=false
+        } else { gv.cuurent_symbol_spidered = name }
       })
     },
 
