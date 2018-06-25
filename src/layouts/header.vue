@@ -54,13 +54,38 @@ export default {
       this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
     },
     onOpenDB: function () {
+      let instance_vue = this
       if (gv.wsocket == undefined) {
-        console.log('ws io')
-        gv.wsocket = new io.connect('http://' + current_url, {'reconnection': false})// current_url include port number
+        this.$q.dialog({
+          title: '你的浏览器禁止网络套接字',
+          message: '请换新版的再来'
+        })
+        return false
       }
-      gv.wsocket.emit('opdb')
+      gv.wsocket.emit('LdDb')
+      gv.wsocket.once('loaded', function () {
+        gv.db_LoadProgress = 100
+        console.log('DB is already loaded')
+        // 'this' is io not vue here,so use some var to pass in get vue then get quasar plugin
+        instance_vue.$q.dialog({
+          title: '很好',
+          message: '数据库早就被人加载了，省你事了'
+        })
+        return true
+      }
+      )
+      gv.wsocket.on('loading', function () {
+        instance_vue.$q.notify({
+          type: 'info',
+          color: 'blue',
+          position: 'top',
+          message: '有人正在加载数据库，等会你也能用'
+        })
+        return false
+      }
+      )
       gv.wsocket.on('db_progress', function (percent) {
-          gv.db_LoadProgress=percent
+        gv.db_LoadProgress = percent
       }
       )
     },

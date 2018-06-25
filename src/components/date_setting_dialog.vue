@@ -2,9 +2,9 @@
   <q-item v-close-overlay>
   <q-item-main>
     <q-btn label="爬取新浪时间设置" @click="maximizedModal = true" color="blue"></q-btn>
-    <q-modal v-model="maximizedModal"  maximized  no-backdrop-dismiss>
+    <q-modal v-model="maximizedModal" :content-css="{padding: '50px'}" maximized  no-backdrop-dismiss>
       <q-modal-layout class="bg-grey">
-        <h5 style="color: blue">设置起始和结束时间:</h5>
+        <h5 style="color: red">设置起始和结束时间:</h5>
         <q-datetime v-model="date_start" inverted color="blue" type="date" placeholder="开始时间"/>
         <q-datetime v-model="date_end" inverted color="blue" type="date" placeholder="结束时间"/>
 
@@ -60,8 +60,11 @@ export default {
       console.log(current_url)
       console.log(gv.wsocket)
       if (gv.wsocket == undefined) {
-        console.log('ws io')
-        gv.wsocket = new io.connect('http://' + current_url, {'reconnection': true})// current_url include port number
+        this.$q.dialog({
+          title: '你的浏览器禁止网络套接字',
+          message: '请换新版的再来'
+        })
+        return false
       }
 
       gv.wsocket.on('connect', function () {

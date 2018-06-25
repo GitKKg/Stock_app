@@ -7,6 +7,7 @@
 <script>
 
 import gv from './global/common_sym'
+import io from 'socket.io-client'
 export default {
   name: 'App',
   mounted: function () {
@@ -24,6 +25,13 @@ export default {
         }
         return undefined// not show dialog
       }
+    }
+  },
+  updated: function () {
+    let current_url = window.location.host
+    if (gv.wsocket == undefined) {
+      console.log('App set ws io')
+      gv.wsocket = new io.connect('http://' + current_url, {'reconnection': true})// current_url include port number
     }
   },
   beforeUpdate: function () {
