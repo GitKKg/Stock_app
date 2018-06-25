@@ -42,14 +42,9 @@ export default {
       if (this.date_start == null | this.date_end == null | this.date_start >= this.date_end) {
         alert('时间设置范围错误，请重设')
       } else {
-        function sleep (delay) {
-          var start = new Date().getTime()
-          while (new Date().getTime() < start + delay);
-        }
-
         this.startSpider()
         this.maximizedModal = false
-        sleep(1000)
+        // sleep(1000)
       }
     },
     startSpider: function () {
@@ -60,12 +55,15 @@ export default {
         'date_end_year': this.date_end.getFullYear(),
         'date_end_month': this.date_end.getMonth() + 1
       }
-      gv.forbidSaveDB=true
+
+      gv.forbidSaveDB = true
       console.log(current_url)
       console.log(gv.wsocket)
-      if (gv.wsocket == null) {
+      if (gv.wsocket == undefined) {
+        console.log('ws io')
         gv.wsocket = new io.connect('http://' + current_url, {'reconnection': true})// current_url include port number
       }
+
       gv.wsocket.on('connect', function () {
         console.log(gv.wsocket.id)
       })
@@ -78,9 +76,11 @@ export default {
         console.log('stockname is ' + name)
         if (name == 'end') {
           gv.spider_progress = -1
-          gv.cuurent_symbol_spidered = ''
-          gv.forbidSaveDB=false
-        } else { gv.cuurent_symbol_spidered = name }
+          gv.current_sym_spidered = ''
+          gv.forbidSaveDB = false
+          gv.wsocket.off('stockname')
+          gv.wsocket.off('progress')
+        } else { gv.current_sym_spidered = name }
       })
     },
 

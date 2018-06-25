@@ -1,6 +1,6 @@
 <template>
   <q-layout-footer >
-    <p v-if="gv.cuurent_symbol_spidered!=''">{{gv.cuurent_symbol_spidered}}</p>
+    <p v-if="gv.current_sym_spidered!=''">{{gv.current_sym_spidered}}</p>
     <qprogress></qprogress>
 
   </q-layout-footer>
@@ -21,7 +21,7 @@ export default {
     }
   },
   created: function () {
-    this.$set(this.gv, 'cuurent_symbol_spidered', '')
+    this.$set(this.gv, 'current_sym_spidered', '')
   }
 }
 </script>

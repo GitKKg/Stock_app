@@ -2,7 +2,7 @@
   <q-layout-header>
     <q-btn-group class="row">
       <q-btn label="显示扫描列表" color="red" @click="onshowlist" />
-      <q-btn label="加载数据库" color="red" />
+      <q-btn label="加载数据库" color="red" @click="onOpenDB"/>
       <q-btn label="开始扫描" v-bind:disable="true" color="primary"/>
       <q-btn label="爬取数据"  color="primary">
         <q-popover :disable="false">
@@ -40,7 +40,7 @@ export default {
     }
   },
   created: function () {
-    this.$set(this.gv, 'forbidSaveDB', false)
+    this.$set(this.gv, 'forbidSaveDB', true)
   },
   computed: {
     // a computed getter
@@ -52,6 +52,17 @@ export default {
   methods: {
     onshowlist: function () {
       this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
+    },
+    onOpenDB: function () {
+      if (gv.wsocket == undefined) {
+        console.log('ws io')
+        gv.wsocket = new io.connect('http://' + current_url, {'reconnection': false})// current_url include port number
+      }
+      gv.wsocket.emit('opdb')
+      gv.wsocket.on('db_progress', function (percent) {
+          gv.db_LoadProgress=percent
+      }
+      )
     },
     onSaveDB: function () {
       gv.wsocket.emit('SaveDB')

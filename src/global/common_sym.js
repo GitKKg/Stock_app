@@ -1,10 +1,11 @@
 var gv = {
-  wsocket: null,
+  wsocket: undefined,
   leftDrawerOpen: false,
   manager: null,
   spider_progress: 0,
-  cuurent_symbol_spidered: '',
+  current_sym_spidered: '',
   forbidSaveDB:true,
+  db_LoadProgress:0,
   scanning_progress:0
 }
 export default
