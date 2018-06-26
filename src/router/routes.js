@@ -2,19 +2,48 @@
 export default [
   {
     path: '/',
+    name: 'default',
     component: () => import('layouts/default'),
+
     children: [
       { path: '', component: () => import('pages/index') }
     ]
   },
   {
-    path: '/scan_overall',
-    component: () => import('layouts/scan_overall')
+    path: '/scan_route',
+    name: 'scan_route',
+    component: () => import('layouts/scan_route'),
+    meta: {
+      keepAlive: true // keep data
+    },
+    children: [
+      {
+        path: '',
+        name: 'scan_overall',
+        component: () => import('layouts/scan_overall'),
+        meta: {
+          keepAlive: true // keep data
+        }
+      },
+      {
+        path: 'rectangle',
+        name: 'scan_rectangle',
+        component: () => import('layouts/scan_rectangle'),
+        meta: {
+          keepAlive: true // keep data
+        }
+      }
+
+    ]
 
   },
   {
     path: '/rectangle',
-    component: ()=> import('layouts/scan_overall')
+    name: 'scan_rectangle',
+    component: () => import('layouts/scan_rectangle'),
+    meta: {
+      keepAlive: false
+    }
 
   },
 

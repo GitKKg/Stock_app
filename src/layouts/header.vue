@@ -13,8 +13,6 @@
                <q-btn label="存储爬网数据到服务器" v-bind:disable="gv.forbidSaveDB" @click="onSaveDB" color="blue" />
               </q-item-main>
             </q-item>
-          <q-item-separator />
-
           </q-list>
         </q-popover>
       </q-btn>
@@ -54,7 +52,7 @@ export default {
       this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
     },
     OnScan: function () {
-      this.$router.push({path: '/scan_overall'})
+      this.$router.push({path: '/scan_route'})
     },
     onOpenDB: function () {
       let instance_vue = this

@@ -66,7 +66,11 @@ module.exports = function (ctx) {
         'QProgress',
         'QTabs',
         'QTab',
-        'QRouteTab'
+        'QRouteTab',
+        'QCard',
+        'QCardTitle',
+        'QCardSeparator',
+        'QCardMain'
       ],
       directives: [
         'Ripple',

@@ -35,14 +35,19 @@ export default {
     return {
       maximizedModal: false,
       name: '',
-      date_start: new Date(),
-      date_end: new Date()
+      date_start: undefined,
+      date_end: undefined
     }
+  },
+  created: function (){
+    this.date_start=new Date()
+    this.date_start.setFullYear(this.date_start.getFullYear()-1)
+    this.date_end=new Date()
   },
   methods: {
     // 当props.ok()被调用
     onSpider: function () {
-      if (this.date_start == null | this.date_end == null | this.date_start >= this.date_end) {
+      if (this.date_start == undefined | this.date_end == undefined | this.date_start >= this.date_end) {
         alert('时间设置范围错误，请重设')
       } else {
         this.startSpider()

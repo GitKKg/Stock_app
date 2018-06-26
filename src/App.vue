@@ -1,6 +1,9 @@
 <template>
   <div id="q-app">
-    <router-view />
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive" />
+      <router-view v-if="!$route.meta.keepAlive" />
+    </keep-alive>
   </div>
 </template>
 

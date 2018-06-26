@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf" >
     <qheader></qheader>
     <qleft_drawer></qleft_drawer>
 

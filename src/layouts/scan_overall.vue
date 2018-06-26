@@ -1,50 +1,81 @@
 <template>
+    <div>
+      <q-card color="light-blue-5">
+        <q-card-title>
+          <q-list>
+            <q-list-header><label>设置扫描时间区域</label></q-list-header>
+            <q-item>
 
-  <div>
-    <q-tabs>
-      <q-tab
-        default
-        icon="settings"
-        label="全局设定"
-        exact
-        slot="title"
-      />
-      <q-route-tab
-        icon="crop_square"
-        label="矩形设定"
-        to="/rectangle"
-        exact
-        slot="title"
-      />
-      <q-route-tab
-        icon="trending_up"
-        label="上升三角形设定"
-        to="/rectangle"
-        exact
-        slot="title"
-      />
-      <q-route-tab
-        icon="trending_down"
-        label="下降三角形设定"
-        to="/"
-        exact
-        slot="title"
-      />
-    </q-tabs>
+              <q-item-side icon="flight_takeoff"><label>开始时间</label></q-item-side>
+              <q-item-main>
+                <q-datetime v-model="date_start"  type="date" placeholder="开始时间"/>
+              </q-item-main>
 
-      <router-view></router-view>
+            </q-item>
 
-  </div>
+            <q-item-separator/>
 
+            <q-item>
+
+              <q-item-side icon="flight_land"><label>结束时间</label></q-item-side>
+              <q-item-main>
+                <q-datetime v-model="date_end"  type="date" placeholder="结束时间"/>
+              </q-item-main>
+            </q-item>
+          </q-list>
+        </q-card-title>
+
+        <q-card-separator />
+        <q-card-main>
+          Card Content
+        </q-card-main>
+      </q-card>
+
+      <q-card>
+        <q-card-title>
+          极点设置
+        </q-card-title>
+        <q-card-separator />
+        <q-card-main>
+          Card Content
+        </q-card-main>
+      </q-card>
+
+      <q-card>
+        <q-card-title>
+          图形长度
+        </q-card-title>
+        <q-card-separator />
+        <q-card-main>
+          Card Content
+        </q-card-main>
+      </q-card>
+    </div>
 </template>
-// orginal design was use 5 route in scaning modal dialog to switch 'overall','rectangle','triangle' para setting page
-// but finally depleted due to route page jump will make whole app fresh ,ws connected lost...
+
 <script>
 export default {
-  name: 'route_scan_overall'
+  name: 'scan_overall',
+  data: function () {
+    return {
+      date_start: undefined,
+      date_end: undefined
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$route.meta.keepAlive = true
+    next()
+  },
+
+  beforeRouteEnter (to, from, next) {
+    console.log('beforeRouteEnter')
+    next()
+  }
 }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+  @import '~variables'
+  label
+    color black
 </style>
