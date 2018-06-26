@@ -1,10 +1,10 @@
 <template>
   <q-layout-header>
     <q-btn-group class="row">
-      <q-btn label="显示扫描列表" color="red" @click="onshowlist" />
-      <q-btn label="加载数据库" color="red" @click="onOpenDB"/>
-      <q-btn label="开始扫描" v-bind:disable="true" color="primary"/>
-      <q-btn label="爬取数据"  color="primary">
+      <q-btn label="显示扫描列表" icon="list" color="red" @click="onshowlist" />
+      <q-btn label="加载数据库" icon="folder_open" color="red" @click="onOpenDB"/>
+      <q-btn label="开始扫描" icon="flight" v-bind:disable="false" color="primary" @click="OnScan"/>
+      <q-btn label="爬取数据" icon="search" color="primary">
         <q-popover :disable="false">
           <q-list>
             <date_setting_dialog></date_setting_dialog>
@@ -24,7 +24,7 @@
 
 <script>
 import { date } from 'quasar'
-import date_setting_dialog from '../components/date_setting_dialog.vue'
+import date_setting_dialog from '../components/date_setting_dialog'
 import gv from '../global/common_sym'
 import io from 'socket.io-client'
 export default {
@@ -52,6 +52,9 @@ export default {
   methods: {
     onshowlist: function () {
       this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
+    },
+    OnScan: function () {
+      this.$router.push({path: '/scan_overall'})
     },
     onOpenDB: function () {
       let instance_vue = this

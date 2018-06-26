@@ -46,8 +46,6 @@ module.exports = function (ctx) {
         'QLayoutFooter',
         'QPageContainer',
         'QPage',
-        'QToolbar',
-        'QToolbarTitle',
         'QBtn',
         'QBtnDropdown',
         'QBtnGroup',
@@ -65,7 +63,10 @@ module.exports = function (ctx) {
         'QPopover',
         'QModal',
         'QModalLayout',
-        'QProgress'
+        'QProgress',
+        'QTabs',
+        'QTab',
+        'QRouteTab'
       ],
       directives: [
         'Ripple',
@@ -75,7 +76,8 @@ module.exports = function (ctx) {
       plugins: [
         'Notify',
         'Dialog'
-      ]
+      ],
+      iconSet: 'material-icons'
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
       // i18n: 'de' // Quasar language
     },

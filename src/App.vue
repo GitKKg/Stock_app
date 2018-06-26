@@ -34,15 +34,7 @@ export default {
       gv.wsocket = new io.connect('http://' + current_url, {'reconnection': true})// current_url include port number
     }
   },
-  beforeUpdate: function () {
-    console.log('beforeUpdate bye')
-    console.log(gv.wsocket)
-    if (gv.wsocket != undefined) {
-      console.log('wsocket here')
-      gv.wsocket.disconnect()
-      gv.wsocket = undefined
-    }
-  },
+
   beforeDestroy: function () {
     console.log('beforeDestroy bye')
     console.log(gv.wsocket)

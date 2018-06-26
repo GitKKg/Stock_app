@@ -1,12 +1,15 @@
 <template>
   <q-item v-close-overlay>
   <q-item-main>
-    <q-btn label="爬取新浪时间设置" @click="maximizedModal = true" color="blue"></q-btn>
+    <q-btn label="爬取新浪时间设置" icon="access_time" @click="maximizedModal = true" color="blue"></q-btn>
     <q-modal v-model="maximizedModal" :content-css="{padding: '50px'}" maximized  no-backdrop-dismiss>
       <q-modal-layout class="bg-grey">
         <h5 style="color: red">设置起始和结束时间:</h5>
-        <q-datetime v-model="date_start" inverted color="blue" type="date" placeholder="开始时间"/>
-        <q-datetime v-model="date_end" inverted color="blue" type="date" placeholder="结束时间"/>
+        <q-icon name="flight_takeoff" size="50px" />
+        <q-datetime v-model="date_start"  inverted color="blue" type="date" placeholder="开始时间"/>
+
+        <q-icon name="flight_land" size="50px"/>
+        <q-datetime v-model="date_end" icon="flight_land" inverted color="blue" type="date" placeholder="结束时间"/>
 
         <q-btn color="tertiary" @click="maximizedModal = false" label="Close" />
         <p>设置完毕点击开始爬取</p>
