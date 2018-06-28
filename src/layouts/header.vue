@@ -3,7 +3,7 @@
     <q-btn-group class="row">
       <q-btn label="显示扫描列表" icon="list" color="red" @click="onshowlist" />
       <q-btn label="加载数据库" icon="folder_open" color="red" @click="onOpenDB"/>
-      <q-btn label="开始扫描" icon="flight" v-bind:disable="false" color="primary" @click="OnScan"/>
+      <q-btn label="开始扫描" icon="flight" v-bind:disable="false" color="blue" @click="OnScan"/>
       <q-btn label="爬取数据" icon="search" color="primary">
         <q-popover :disable="false">
           <q-list>

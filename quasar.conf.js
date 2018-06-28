@@ -4,6 +4,7 @@ module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
     plugins: [
+      'vuelidate'
     ],
     css: [
       'app.styl'
@@ -15,7 +16,7 @@ module.exports = function (ctx) {
       // 'mdi',
       // 'fontawesome'
     ],
-    supportIE: false,
+    supportIE: true,
     build: {
       scopeHoisting: true,
       vueRouterMode: 'history',
