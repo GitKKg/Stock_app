@@ -11,7 +11,7 @@
 
 <script>
 import search_list from '../components/search_list'
-import gv from '../global/common_sym'
+import {gv} from '../global/common_sym'
 export default {
   name: 'qleft_drawer',
   components: {

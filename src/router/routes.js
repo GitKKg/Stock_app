@@ -38,8 +38,8 @@ export default [
 
   },
   {
-    path: '/rectangle',
-    name: 'scan_rectangle',
+    path: '/triangle1',
+    name: 'scan_triangle1',
     component: () => import('layouts/scan_rectangle'),
     meta: {
       keepAlive: false

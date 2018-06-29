@@ -8,8 +8,7 @@
 </template>
 
 <script>
-
-import gv from './global/common_sym'
+import {gv} from './global/common_sym'
 import io from 'socket.io-client'
 export default {
   name: 'App',

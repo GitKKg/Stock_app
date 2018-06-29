@@ -27,7 +27,7 @@
 import axios from 'axios'
 import io from 'socket.io-client'
 import manager from 'socket.io-client'
-import gv from '../global/common_sym'
+import {gv, OverallSetting} from '../global/common_sym'
 
 export default {
   name: 'date_setting_dialog',

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import gv from '../global/common_sym'
+import {gv, OverallSetting} from '../global/common_sym'
 import qprogress from '../components/progress'
 
 export default {

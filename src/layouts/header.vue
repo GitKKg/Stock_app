@@ -23,7 +23,7 @@
 <script>
 import { date } from 'quasar'
 import date_setting_dialog from '../components/date_setting_dialog'
-import gv from '../global/common_sym'
+import {gv, OverallSetting} from '../global/common_sym'
 import io from 'socket.io-client'
 export default {
   name: 'qheader',

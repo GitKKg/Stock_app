@@ -3,7 +3,6 @@
   <div>
     <q-tabs v-model="gv.scan_route_Tab" >
       <q-tab
-        alert="true"
         icon="settings"
         name="overall"
         label="全局设定"
@@ -32,6 +31,7 @@
         icon="trending_down"
         name="triangle2"
         label="下降三角形设定"
+        @click="onTriangle2"
         to="/"
         exact
         slot="title"
@@ -45,18 +45,19 @@
 </template>
 
 <script>
-import gv from '../global/common_sym'
+import {gv, OverallSetting} from '../global/common_sym'
+
 export default {
   name: 'route_scan_overall',
   data: function () {
     return {
-      gv: gv
+      gv: gv,
+      OverallSetting: OverallSetting,
     }
   },
   methods: {
-    onRect: function () {
-      console.log('tabs')
-      return false
+    onTriangle2: function () {
+      this.$router.push({path: '/'})
     },
     onOverall: function () {
       this.$router.push({path: '/scan_route'})
@@ -66,13 +67,14 @@ export default {
     }
   },
   created: function () {
-    console.log('scan_route_Tab watched')
+    console.log('scan_route_Tab created')
+    console.log('OverallSetting.next')
     this.$set(this.gv, 'scan_route_Tab', 'overall')
   },
   updated: function () {
     console.log('scan_route_Tab beforeUpdate')
     console.log(gv.scan_route_Tab)
-    if(gv.scan_needRecheck_Tab!=undefined) {
+    if (gv.scan_needRecheck_Tab != undefined) {
       console.log('force reselect')
       console.log(gv.scan_needRecheck_Tab)
       gv.scan_route_Tab = gv.scan_needRecheck_Tab

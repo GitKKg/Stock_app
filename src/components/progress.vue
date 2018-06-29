@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import gv from '../global/common_sym'
+import {gv, OverallSetting} from '../global/common_sym'
 export default {
   name: 'qprogress',
   data: function () {
