@@ -4,7 +4,8 @@ module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
     plugins: [
-      'vuelidate'
+      'vuelidate',
+      'graph_scan'
     ],
     css: [
       'app.styl'

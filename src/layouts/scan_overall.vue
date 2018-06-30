@@ -121,6 +121,7 @@ export default {
   },
   activated: function () {
     console.log('activated')
+
     if (OverallSetting.ScanDateStart == undefined || OverallSetting.ScanDateEnd == undefined || OverallSetting.ScanDateStart >= OverallSetting.ScanDateEnd) {
       this.OverallSetting.ScanDateStart = new Date()
       this.OverallSetting.ScanDateStart.setFullYear(this.OverallSetting.ScanDateStart.getFullYear() - 1)
@@ -141,6 +142,7 @@ export default {
         this.$q.notify('设定值非法，请重设')
       } else {
         this.$router.push({path: '/'})
+        this.$scan_start_test()
       }
     },
     // get not good effect due to q-input
