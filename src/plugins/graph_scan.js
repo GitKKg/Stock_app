@@ -3,6 +3,7 @@
 import {gv, OverallSetting, RectangleSetting, TriangleUpSetting, TriangleDownSetting} from '../global/common_sym'
 import { date } from 'quasar'
 import io from 'socket.io-client'
+import axios from 'axios'
 
 // OverallSetting.ScanDateStart=new Date()
 let timeStamp = OverallSetting.ScanDateStart
@@ -28,7 +29,7 @@ let rectangle_vals = [
   RectangleSetting.TopFuzzy / 100,
   RectangleSetting.BottomHits,
   RectangleSetting.BottomFuzzy / 100,
-  RectangleSetting.maxHeight ,
+  RectangleSetting.maxHeight,
   RectangleSetting.minHeight,
   RectangleSetting.rightMargin,
   RectangleSetting.rightDrawback
@@ -41,11 +42,11 @@ let triangle1_vals = [
   TriangleUpSetting.TopFuzzy / 100,
   TriangleUpSetting.BottomHits,
   TriangleUpSetting.BottomFuzzy / 100,
-  TriangleUpSetting.maxHeight ,
+  TriangleUpSetting.maxHeight,
   TriangleUpSetting.minHeight,
   TriangleUpSetting.rightMargin,
   TriangleUpSetting.rightDrawback,
-  TriangleUpSetting.BottomSlope/100
+  TriangleUpSetting.BottomSlope / 100
 ]
 let triangle2_keys = ['enable', 'tophits', 'topfuzzy', 'bottomhits', 'bottomfuzzy', 'high', 'low',
   'rightmargin', 'rightdrawback', 'topslope']
@@ -55,11 +56,11 @@ let triangle2_vals = [
   TriangleDownSetting.TopFuzzy / 100,
   TriangleDownSetting.BottomHits,
   TriangleDownSetting.BottomFuzzy / 100,
-  TriangleDownSetting.maxHeight ,
+  TriangleDownSetting.maxHeight,
   TriangleDownSetting.minHeight,
   TriangleDownSetting.rightMargin,
   TriangleDownSetting.rightDrawback,
-  TriangleDownSetting.TopSlope/100
+  TriangleDownSetting.TopSlope / 100
 ]
 
 function zip () {
@@ -98,7 +99,15 @@ function scan_start_test () {
   console.log(typeof (ScanParameter.overall['start']))
   console.log(ScanParameter.overall['start'])
   console.log(ScanParameter.overall['max'])
-  gv.wsocket.emit('scan',ScanParameter)
+  // gv.wsocket.emit('scan',ScanParameter)
+  console.log(gv.wsocket.id)
+  axios.post('/scan', {sid:gv.wsocket.id})
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
 
 // leave the export, even if you don't use it

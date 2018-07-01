@@ -31,9 +31,14 @@ export default {
   },
   updated: function () {
     let current_url = window.location.host
+
     if (gv.wsocket == undefined) {
       console.log('App set ws io')
       gv.wsocket = new io.connect('http://' + current_url, {'reconnection': true})// current_url include port number
+      gv.wsocket.on('connect', () => {
+        console.log('wsocket.id')
+        console.log(gv.wsocket.id)
+      })
     }
   },
 
