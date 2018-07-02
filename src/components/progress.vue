@@ -13,7 +13,7 @@
                 height="45px"
     />
   <q-progress v-if="gv.scanning_progress!=-1"
-              :percentage=50
+              :percentage=gv.scanning_progress
               stripe
               animate
               height="45px"

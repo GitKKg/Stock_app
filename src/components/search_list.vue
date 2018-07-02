@@ -4,31 +4,33 @@
     :striped-odd="true"
     separator
   >
-    <q-list-header :inset="true">搜索结果列表 :</q-list-header>
-    <q-item @click.native="openURL('http://quasar-framework.org')">
-      <q-item-main  label="建设银行" />
+    <q-list-header inset="true">搜索结果列表 :</q-list-header>
+    <q-item v-for="item in ScanGroup">
+      <q-item-main  :label=item[gv.code]+space+item[gv.name] @click.native="showGraph(item[gv.name],item[gv.code])" />
     </q-item>
-    <q-item @click.native="openURL('https://github.com/quasarframework/')">
-      <q-item-main  label="工商银行" />
-    </q-item>
-    <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
-      <q-item-main label="江苏银行"  />
-    </q-item>
-    <q-item @click.native="openURL('http://forum.quasar-framework.org')">
-      <q-item-main label="中国银行"  />
-    </q-item>
-    <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-      <q-item-main label="招商银行"  />
-    </q-item>
+
   </q-list>
 </template>
 
 <script>
 import { openURL } from 'quasar'
+import {ScanGroup, gv} from '../global/common_sym'
 export default {
   name: 'search_list',
+  data: function () {
+    return {
+      ScanGroup: ScanGroup,
+      gv: gv,
+      space: '\t'
+    }
+  },
   methods: {
-    openURL
+    openURL,
+    showGraph: function (name,code) {
+      console.log('showGraph')
+      console.log(name)
+      this.$q.notify(code+name+this.space+'入选！')
+    }
   }
 }
 </script>

@@ -9,15 +9,26 @@ var gv = {
   db_LoadProgress: 0,
   scanning_progress: 0,
   scan_route_Tab: 'overall',
-  scan_needRecheck_Tab: undefined
+  scan_needRecheck_Tab: undefined,
+  code:0,
+  name:1,
+  dates:2,
+  values:3,
+  shares:4,
+  factors:5,
+  averages:6,
+  fuquan_averages:7,
+  topSeq:8,
+  bottomSeq:9,
+  graph:10
 }
 var OverallSetting = {
   ScanDateStart: new Date(),
   ScanDateEnd: new Date(),
-  prev: 3,
+  prev: 2,
   prevMax: 10,
   prevMin: 2,
-  next: 3,
+  next: 2,
   nextMax: 10,
   nextMin: 2,
   fuzzy: 0.5,
@@ -32,7 +43,7 @@ var OverallSetting = {
 }
 var RectangleSetting = {
   RectChecked: true,
-  TopHits: 3,
+  TopHits: 2,
   TopHitsMin: 2,
   TopHitsMax: 10,
   TopFuzzy: 0.5,
@@ -41,7 +52,7 @@ var RectangleSetting = {
   BottomFuzzy: 0.5,
   BottomFuzzyMin: 0.2,
   BottomFuzzyMax: 1,
-  BottomHits: 3,
+  BottomHits: 2,
   BottomHitsMin: 2,
   BottomHitsMax: 10,
   minHeight: 10,
@@ -118,5 +129,8 @@ var TriangleDownSetting = {
   TopSlopeMin: 0.05,
   TopSlopeMax: 0.25
 }
-export {gv, OverallSetting, RectangleSetting,TriangleUpSetting,TriangleDownSetting}
+
+var ScanGroup=[]
+
+export {gv, OverallSetting, RectangleSetting,TriangleUpSetting,TriangleDownSetting,ScanGroup}
 </script>
