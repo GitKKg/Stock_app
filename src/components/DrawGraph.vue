@@ -8,7 +8,7 @@ import {gv, ScanGroup} from '../global/common_sym'
 
 export default {
   name: 'DrawGraph',
-  mounted () {
+  mounted () { // flex container,insert before update
     console.log('DrawGraph mounted')
     this.initChart(gv.P_Graph)
   },
@@ -22,6 +22,7 @@ export default {
     initChart (parent) {
       var options = {
         chart: {
+          animation: false,
           type: 'spline',
           backgroundColor: '#F5F5F5',
           height: parent.$el.clientHeight, // fist show still need this method,resize no work here
@@ -56,11 +57,31 @@ export default {
           name: '复权价格',
           data: ScanGroup[gv.StockIndex][gv.fuquan_averages]
 
-        }]
+        }
+        ]
 
       }
+
       // 图表初始化函数
       gv.Chart = new Highcharts.chart(this.$el, options)
+      ScanGroup[gv.StockIndex][gv.topSeq]
+        .map(group => gv.Chart.series[0].data[group])
+        .map(point => point.update({
+          color: 'red',
+          marker: {
+            enabled: true,
+            symbol: 'circle'
+          }
+        },false,false))
+      ScanGroup[gv.StockIndex][gv.bottomSeq]
+        .map(group => gv.Chart.series[0].data[group])
+        .map(point => point.update({
+          color: 'green',
+          marker: {
+            enabled: true,
+            symbol: 'circle'
+          }
+        },true,false))
     }
   }
 }

@@ -36,8 +36,26 @@ export default {
         gv.Chart.xAxis[0].setCategories(ScanGroup[gv.StockIndex][gv.dates], false)
         gv.Chart.series[0].setData(ScanGroup[gv.StockIndex][gv.fuquan_averages], false)
         gv.Chart.setTitle({text: ScanGroup[gv.StockIndex][gv.code] + '\t' + ScanGroup[gv.StockIndex][gv.name]}, null, false)
-        gv.Chart.setSize(null, null, false)
-        gv.Chart.redraw()
+        // gv.Chart.setSize(null, null, false)
+        gv.Chart.redraw(false)
+        ScanGroup[gv.StockIndex][gv.topSeq]
+          .map(group => gv.Chart.series[0].data[group])
+          .map(point => point.update({
+            color: 'red',
+            marker: {
+              enabled: true,
+              symbol: 'circle'
+            }
+          },false,false))
+        ScanGroup[gv.StockIndex][gv.bottomSeq]
+          .map(group => gv.Chart.series[0].data[group])
+          .map(point => point.update({
+            color: 'green',
+            marker: {
+              enabled: true,
+              symbol: 'circle'
+            }
+          },true,false))
       }
     }
   }

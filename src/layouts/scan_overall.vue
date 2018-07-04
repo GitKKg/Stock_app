@@ -59,8 +59,8 @@
             <q-item>
               <q-item-side icon="center_focus_strong"><label>模糊度</label></q-item-side>
               <q-item-main>
-                <q-input v-model="OverallSetting.fuzzy"  @blur="RangeCheck('fuzzy')" type="number" :decimals="2" :step="0.01" suffix="%" stack-label="最小0.2最大1"
-                         min="0.2" max="1"/>
+                <q-input v-model="OverallSetting.fuzzy"  @blur="RangeCheck('fuzzy')" type="number" :decimals="2" :step="0.01" suffix="%" stack-label="建议值0最大0.1不建议调整"
+                         min="0" max="0.1"/>
               </q-item-main>
             </q-item>
 
@@ -221,7 +221,7 @@ export default {
       },
       fuzzy: {
         required,
-        between: between(0.1, 1)
+        between: between(0, 0.1)
       },
       minGLength: {
         required,
