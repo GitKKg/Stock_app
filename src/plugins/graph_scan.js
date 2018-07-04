@@ -1,6 +1,6 @@
 // import something here
 
-import {gv, OverallSetting, RectangleSetting, TriangleUpSetting, TriangleDownSetting,ScanGroup} from '../global/common_sym'
+import {gv, OverallSetting, RectangleSetting, TriangleUpSetting, TriangleDownSetting, ScanGroup} from '../global/common_sym'
 import { date } from 'quasar'
 import io from 'socket.io-client'
 import axios from 'axios'
@@ -106,16 +106,17 @@ function scan_start_test () {
 
   gv.wsocket.on('ScanerProgress', function (percent) {
     console.log('ScanerProgress')
-    gv.scanning_progress=percent
+    gv.scanning_progress = percent
   })
 
   gv.wsocket.on('ScanMatch', function (data_array) {
-    console.log('ScanMatch')
-    console.log(eval(data_array[10]))
-    data_array[10]=eval(data_array[10])//for the fuck json serialization work around in server
-    ScanGroup.push(data_array)
-    console.log(ScanGroup)
+    //console.log('ScanMatch')
+    //console.log(eval(data_array[10]))
 
+    // eval is noneed,str(graphs) not any more for json serialization,already numpy.int32 convert to int
+    // data_array[10] = eval(data_array[10])// for the fuck str(graphs) json serialization work around in server
+    ScanGroup.push(data_array)
+    //console.log(ScanGroup)
   })
 }
 

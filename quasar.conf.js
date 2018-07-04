@@ -73,7 +73,8 @@ module.exports = function (ctx) {
         'QCardTitle',
         'QCardSeparator',
         'QCardMain',
-        'QToggle'
+        'QToggle',
+        'QResizeObservable'
       ],
       directives: [
         'Ripple',

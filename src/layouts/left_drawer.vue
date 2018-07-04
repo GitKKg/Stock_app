@@ -23,7 +23,7 @@ export default {
     }
   },
   created: function () {
-    this.$set(this.gv, 'leftDrawerOpen',false)
+    this.$set(this.gv, 'leftDrawerOpen', false)
   }
 }
 </script>

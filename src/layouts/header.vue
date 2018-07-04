@@ -50,6 +50,7 @@ export default {
   methods: {
     onshowlist: function () {
       this.gv.leftDrawerOpen = (!this.gv.leftDrawerOpen)
+
     },
     OnScan: function () {
       this.$router.push({path: '/scan_route'})

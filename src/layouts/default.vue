@@ -4,8 +4,11 @@
     <qleft_drawer></qleft_drawer>
 
     <q-page-container>
-      <router-view />
-      <q-page>
+
+      <q-page class="column  items-stretch" ref="P_Graph">
+          <q-resize-observable @resize="onResize" />
+          <DrawGraph  v-if="gv.StockIndex!=-1 "></DrawGraph>
+          <router-view v-else />
 
       </q-page>
     </q-page-container>
@@ -17,16 +20,18 @@
 
 <script>
 import { openURL } from 'quasar'
+import DrawGraph from '../components/DrawGraph'
 import qheader from './header.vue'
 import qfooter from './footer.vue'
 import qleft_drawer from './left_drawer.vue'
-import {gv, OverallSetting} from '../global/common_sym'
+import {gv, OverallSetting, ScanGroup} from '../global/common_sym'
 export default {
   name: 'LayoutDefault',
   components: {
     qheader,
     qfooter,
-    qleft_drawer
+    qleft_drawer,
+    DrawGraph
   },
   data: function () {
     return {
@@ -36,11 +41,25 @@ export default {
   },
   created: function () {
     console.log('default created')
-    console.log(this.gv)
-    console.log(this.OverallSetting)
+    this.$set(this.gv, 'StockIndex', -1)
   },
+  mounted: function () {
+    console.log('LayoutDefault mounted!')
+    gv.P_Graph = this.$refs.P_Graph
+    console.log(gv.P_Graph)
+    console.log(gv.P_Graph.$el.clientHeight)
+  },
+
   methods: {
-    openURL
+    openURL,
+    onResize:function(size){//this is really a great function provided by quasar
+      console.log('!!!default onResize')
+      console.log(size)
+      if (gv.StockIndex != -1){
+        console.log('reflow!!!!')
+        gv.Chart.setSize(null, size.height, true)
+      }
+    }
   }
 }
 </script>

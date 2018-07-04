@@ -14,7 +14,7 @@ export default [
     name: 'scan_route',
     component: () => import('layouts/scan_route'),
     meta: {
-      keepAlive: true // keep data
+      keepAlive: true // keep data ,actually no need since global gv introduced
     },
     children: [
       {
