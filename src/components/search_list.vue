@@ -33,29 +33,34 @@ export default {
         gv.StockIndex = index
       } else {
         gv.StockIndex = index
-        gv.Chart.xAxis[0].setCategories(ScanGroup[gv.StockIndex][gv.dates], false)
-        gv.Chart.series[0].setData(ScanGroup[gv.StockIndex][gv.fuquan_averages], false)
-        gv.Chart.setTitle({text: ScanGroup[gv.StockIndex][gv.code] + '\t' + ScanGroup[gv.StockIndex][gv.name]}, null, false)
-        // gv.Chart.setSize(null, null, false)
-        gv.Chart.redraw(false)
-        ScanGroup[gv.StockIndex][gv.topSeq]
-          .map(group => gv.Chart.series[0].data[group])
-          .map(point => point.update({
+        var fuquan_array = ScanGroup[index][gv.fuquan_averages].slice()
+        ScanGroup[index][gv.topSeq]
+          .map(day => fuquan_array[day] = {
+            y: ScanGroup[index][gv.fuquan_averages][day],
             color: 'red',
             marker: {
               enabled: true,
-              symbol: 'circle'
+              symbol: 'triangle-down'
             }
-          },false,false))
-        ScanGroup[gv.StockIndex][gv.bottomSeq]
-          .map(group => gv.Chart.series[0].data[group])
-          .map(point => point.update({
-            color: 'green',
+          })
+
+        ScanGroup[index][gv.bottomSeq]
+          .map(day => fuquan_array[day] = {
+            y: ScanGroup[index][gv.fuquan_averages][day],
+            color: 'black',
             marker: {
               enabled: true,
-              symbol: 'circle'
+              symbol: 'triangle'
             }
-          },true,false))
+          })
+        gv.Chart.xAxis[0].setCategories(ScanGroup[index][gv.dates], false)
+        // the last option updatePoints of setData() is a fucking shit trap,default true means passing value(1st anti-intuition),
+        // false means passing ref,but even if passing value is merging points status not overwriting!shit!
+        // no doc detail specify this 2nd anti-intuitive setting!
+        gv.Chart.series[0].setData(fuquan_array, false, false, false)// 3rd must be false!or else they are merged not overwrited!
+        gv.Chart.setTitle({text: ScanGroup[index][gv.code] + '\t' + ScanGroup[index][gv.name]}, null, false)
+        // gv.Chart.setSize(null, null, false)
+        gv.Chart.redraw(false)
       }
     }
   }

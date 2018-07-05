@@ -20,6 +20,30 @@ export default {
   },
   methods: {
     initChart (parent) {
+      // slice could finish 1st level copy
+      var fuquan_array = ScanGroup[gv.StockIndex][gv.fuquan_averages].slice()
+      console.log(fuquan_array)
+      ScanGroup[gv.StockIndex][gv.topSeq]
+        .map(day => {
+          fuquan_array[day] = {
+            y: ScanGroup[gv.StockIndex][gv.fuquan_averages][day],
+            color: 'red',
+            marker: {
+              enabled: true,
+              symbol: 'triangle-down'
+            }}
+        })
+
+      ScanGroup[gv.StockIndex][gv.bottomSeq]
+        .map(day => fuquan_array[day] = {
+          y: ScanGroup[gv.StockIndex][gv.fuquan_averages][day],
+          color: 'black',
+          marker: {
+            enabled: true,
+            symbol: 'triangle'
+          }
+        })
+
       var options = {
         chart: {
           animation: false,
@@ -55,7 +79,7 @@ export default {
         },
         series: [{
           name: '复权价格',
-          data: ScanGroup[gv.StockIndex][gv.fuquan_averages]
+          data: fuquan_array
 
         }
         ]
@@ -64,24 +88,6 @@ export default {
 
       // 图表初始化函数
       gv.Chart = new Highcharts.chart(this.$el, options)
-      ScanGroup[gv.StockIndex][gv.topSeq]
-        .map(group => gv.Chart.series[0].data[group])
-        .map(point => point.update({
-          color: 'red',
-          marker: {
-            enabled: true,
-            symbol: 'circle'
-          }
-        },false,false))
-      ScanGroup[gv.StockIndex][gv.bottomSeq]
-        .map(group => gv.Chart.series[0].data[group])
-        .map(point => point.update({
-          color: 'green',
-          marker: {
-            enabled: true,
-            symbol: 'circle'
-          }
-        },true,false))
     }
   }
 }
