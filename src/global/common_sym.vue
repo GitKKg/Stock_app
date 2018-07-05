@@ -23,7 +23,14 @@ var gv = {
   fuquan_averages:7,
   topSeq:8,
   bottomSeq:9,
-  graph:10
+  graph:10,
+  shape:0,
+  left:1,
+  right:2,
+  top:3,
+  bottom:4,
+  hit_top:5,
+  hit_bottom:6
 }
 var OverallSetting = {
   ScanDateStart: new Date(),

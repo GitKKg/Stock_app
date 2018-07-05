@@ -87,10 +87,43 @@ export default {
       }
 
       // 图表初始化函数
-      gv.Chart = new Highcharts.chart(this.$el, options)
+      gv.Chart = new Highcharts.chart(this.$el, options, function (chart) {
+        for (let g of ScanGroup[gv.StockIndex][gv.graph]) {
+          console.log('gv.graph')
+          if (g[gv.shape] == 'rect') {
+            console.log('gv.rect')
+            console.log(g)
+            console.log(g[gv.left])
+            console.log(g[gv.bottom])
+            console.log(g[gv.right])
+            console.log(g[gv.top])
+
+            var xAxis = chart.xAxis[0]
+            var yAxis = chart.yAxis[0]
+            console.log(yAxis.toPixels(fuquan_array[g[gv.hit_top][0]].y))
+            console.log(yAxis.toPixels(fuquan_array[g[gv.hit_bottom][0]].y))
+
+            chart.renderer.rect(
+              xAxis.toPixels(g[gv.left]),
+              yAxis.toPixels(g[gv.top]),
+              xAxis.toPixels(g[gv.right]) - xAxis.toPixels(g[gv.left]),
+              // bottom - top,just so fuck anti-intuitive!
+              yAxis.toPixels(g[gv.bottom]) - yAxis.toPixels(g[gv.top]),
+              5
+            ).attr({
+              'stroke-width': 2,
+              stroke: 'red',
+              zIndex: 3
+            })
+              .add()
+          }
+        }
+      })
     }
   }
+
 }
+
 </script>
 
 <style scoped>
