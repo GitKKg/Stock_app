@@ -105,10 +105,10 @@ export default {
 
             chart.renderer.rect(
               xAxis.toPixels(g[gv.left]),
-              yAxis.toPixels(g[gv.top]),
+              yAxis.toPixels(fuquan_array[g[gv.hit_top][0]].y),
               xAxis.toPixels(g[gv.right]) - xAxis.toPixels(g[gv.left]),
               // bottom - top,just so fuck anti-intuitive!
-              yAxis.toPixels(g[gv.bottom]) - yAxis.toPixels(g[gv.top]),
+              yAxis.toPixels(fuquan_array[g[gv.hit_bottom][0]].y) - yAxis.toPixels(fuquan_array[g[gv.hit_top][0]].y),
               5
             ).attr({
               'stroke-width': 2,
