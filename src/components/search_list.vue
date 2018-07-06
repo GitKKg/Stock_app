@@ -60,7 +60,9 @@ export default {
         gv.Chart.series[0].setData(fuquan_array, false, false, false)// 3rd must be false!or else they are merged not overwrited!
         gv.Chart.setTitle({text: ScanGroup[index][gv.code] + '\t' + ScanGroup[index][gv.name]}, null, false)
         // gv.Chart.setSize(null, null, false)
+
         gv.Chart.redraw(false)
+        this.$addGraph(gv.Chart)
       }
     }
   }

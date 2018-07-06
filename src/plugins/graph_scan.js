@@ -4,7 +4,7 @@ import {gv, OverallSetting, RectangleSetting, TriangleUpSetting, TriangleDownSet
 import { date } from 'quasar'
 import io from 'socket.io-client'
 import axios from 'axios'
-
+import JQuery from 'jquery'
 function zip () {
   var args = [].slice.call(arguments)
   var shortest = args.length == 0 ? [] : args.reduce(function (a, b) {
@@ -110,18 +110,55 @@ function scan_start_test () {
   })
 
   gv.wsocket.on('ScanMatch', function (data_array) {
-    //console.log('ScanMatch')
-    //console.log(eval(data_array[10]))
+    // console.log('ScanMatch')
+    // console.log(eval(data_array[10]))
 
     // eval is noneed,str(graphs) not any more for json serialization,already numpy.int32 convert to int
     // data_array[10] = eval(data_array[10])// for the fuck str(graphs) json serialization work around in server
     ScanGroup.push(data_array)
-    //console.log(ScanGroup)
+    // console.log(ScanGroup)
   })
 }
 
+function addGraph (chart) {
+  // no choice, vue get no easy way to op element, think highcharts intend not let vue op its el too,so... jquery
+  // of course ,it all is blamed to the design that highcharts svg is independent to series
+  JQuery('.stockgraph').remove()
+
+  for (let g of ScanGroup[gv.StockIndex][gv.graph]) {
+    console.log('gv.graph')
+    if (g[gv.shape] == 'rect') {
+      console.log('gv.rect')
+      console.log(g)
+      console.log(g[gv.left])
+      console.log(g[gv.bottom])
+      console.log(g[gv.right])
+      console.log(g[gv.top])
+
+      var xAxis = chart.xAxis[0]
+      var yAxis = chart.yAxis[0]
+      console.log(yAxis.toPixels(chart.series[0].data[g[gv.hit_top][0]].y))
+      console.log(yAxis.toPixels(chart.series[0].data[g[gv.hit_bottom][0]].y))
+
+      chart.renderer.rect(
+        xAxis.toPixels(g[gv.left]),
+        yAxis.toPixels(chart.series[0].data[g[gv.hit_top][0]].y),
+        xAxis.toPixels(g[gv.right]) - xAxis.toPixels(g[gv.left]),
+        // bottom - top,just so fuck anti-intuitive!
+        yAxis.toPixels(chart.series[0].data[g[gv.hit_bottom][0]].y) - yAxis.toPixels(chart.series[0].data[g[gv.hit_top][0]].y),
+        5
+      ).attr({
+        'stroke-width': 2,
+        stroke: 'black',
+        zIndex: 0
+      }).addClass('stockgraph')
+        .add()
+    }
+  }
+}
 // leave the export, even if you don't use it
 export default ({ Vue }) => {
   // something to do
-  Vue.prototype.$scan_start_test = scan_start_test
+  Vue.prototype.$scan_start_test = scan_start_test,
+  Vue.prototype.$addGraph = addGraph
 }
