@@ -31,11 +31,11 @@ export default {
   methods: {
     initChart (parent) {
       // slice could finish 1st level copy
-      var fuquan_array = ScanGroup[gv.StockIndex][gv.fuquan_averages].slice()
-      console.log(fuquan_array)
+      var fuquanArray = ScanGroup[gv.StockIndex][gv.fuquan_averages].slice()
+      console.log(fuquanArray)
       ScanGroup[gv.StockIndex][gv.topSeq]
         .map(day => {
-          fuquan_array[day] = {
+          fuquanArray[day] = {
             y: ScanGroup[gv.StockIndex][gv.fuquan_averages][day],
             color: 'red',
             marker: {
@@ -45,13 +45,14 @@ export default {
         })
 
       ScanGroup[gv.StockIndex][gv.bottomSeq]
-        .map(day => fuquan_array[day] = {
-          y: ScanGroup[gv.StockIndex][gv.fuquan_averages][day],
-          color: 'black',
-          marker: {
-            enabled: true,
-            symbol: 'triangle'
-          }
+        .map(day => {
+          fuquanArray[day] = {
+            y: ScanGroup[gv.StockIndex][gv.fuquan_averages][day],
+            color: 'black',
+            marker: {
+              enabled: true,
+              symbol: 'triangle'
+            }}
         })
 
       var options = {
@@ -98,7 +99,7 @@ export default {
         },
         series: [{
           name: '复权价格',
-          data: fuquan_array
+          data: fuquanArray
 
         }
         ]
