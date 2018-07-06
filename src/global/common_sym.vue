@@ -10,27 +10,28 @@ var gv = {
   scanning_progress: 0,
   scan_route_Tab: 'overall',
   scan_needRecheck_Tab: undefined,
-  StockIndex:-1,
-  Chart:undefined,
-  P_Graph:undefined,
-  code:0,
-  name:1,
-  dates:2,
-  values:3,
-  shares:4,
-  factors:5,
-  averages:6,
-  fuquan_averages:7,
-  topSeq:8,
-  bottomSeq:9,
-  graph:10,
-  shape:0,
-  left:1,
-  right:2,
-  top:3,
-  bottom:4,
-  hit_top:5,
-  hit_bottom:6
+  StockIndex: -1,
+  Chart: undefined,
+  P_Graph: undefined,
+  graphSelected: false,
+  code: 0,
+  name: 1,
+  dates: 2,
+  values: 3,
+  shares: 4,
+  factors: 5,
+  averages: 6,
+  fuquan_averages: 7,
+  topSeq: 8,
+  bottomSeq: 9,
+  graph: 10,
+  shape: 0,
+  left: 1,
+  right: 2,
+  top: 3,
+  bottom: 4,
+  hit_top: 5,
+  hit_bottom: 6
 }
 var OverallSetting = {
   ScanDateStart: new Date(),
@@ -140,7 +141,7 @@ var TriangleDownSetting = {
   TopSlopeMax: 0.25
 }
 
-var ScanGroup=[]
+var ScanGroup = []
 
-export {gv, OverallSetting, RectangleSetting,TriangleUpSetting,TriangleDownSetting,ScanGroup}
+export {gv, OverallSetting, RectangleSetting, TriangleUpSetting, TriangleDownSetting, ScanGroup}
 </script>

@@ -120,7 +120,7 @@ function scan_start_test () {
   })
 }
 
-function addGraph (chart) {
+export function addGraph (chart) {
   // no choice, vue get no easy way to op element, think highcharts intend not let vue op its el too,so... jquery
   // of course ,it all is blamed to the design that highcharts svg is independent to series
   JQuery('.stockgraph').remove()

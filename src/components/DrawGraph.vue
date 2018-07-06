@@ -5,6 +5,16 @@
 <script>
 import Highcharts from 'highcharts'
 import {gv, ScanGroup} from '../global/common_sym'
+import {addGraph} from '../plugins/graph_scan'
+
+//  add pan event handler to highcharts for drawing graph to respond with shifting chart after zooming in
+(function (H) {
+  H.wrap(H.Chart.prototype, 'pan', function (proceed) {
+    console.log('pannig...')
+    addGraph(gv.Chart)
+    proceed.call(this, arguments[1], arguments[2])
+  })
+})(Highcharts)
 
 export default {
   name: 'DrawGraph',
@@ -46,7 +56,15 @@ export default {
 
       var options = {
         chart: {
-          // events: {load: function (){this.addGraph(gv.Chart)}},//no vue context,can't be called
+          events: {
+            selection: function (event) { gv.graphSelected = true },
+            redraw: function () {
+              if (gv.graphSelected == true) {
+                addGraph(gv.Chart)// 'this' is not vue here,so could only directly import addGraph
+                gv.graphSelected = false
+              }
+            }
+          }, // no vue context,can't be called
           animation: false,
           type: 'spline',
           backgroundColor: '#F5F5F5',
@@ -86,8 +104,8 @@ export default {
         ]
 
       }
+      // pan,event handler for shifting when in zooming in status
 
-      // 图表初始化函数
       gv.Chart = new Highcharts.chart(this.$el, options)
       this.$addGraph(gv.Chart)
     }

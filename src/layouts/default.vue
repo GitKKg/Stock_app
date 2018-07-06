@@ -52,12 +52,13 @@ export default {
 
   methods: {
     openURL,
-    onResize:function(size){ // this is really a great function provided by quasar
+    onResize: function (size) { // this is really a great function provided by quasar
       console.log('!!!default onResize')
       console.log(size)
-      if (gv.StockIndex != -1){
+      if (gv.StockIndex != -1) {
         console.log('reflow!!!!')
-        gv.Chart.setSize(null, null, true)//size.height
+        gv.Chart.setSize(null, size.height, true)// size.height
+        this.$addGraph(gv.Chart)
       }
     }
   }
