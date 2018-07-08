@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import { required, minLength, between } from 'vuelidate/lib/validators'
+import { required, between } from 'vuelidate/lib/validators'
 import {gv,RectangleSetting} from '../global/common_sym'
 export default {
   name: 'scan_rectangle',

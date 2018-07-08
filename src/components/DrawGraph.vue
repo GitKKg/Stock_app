@@ -4,10 +4,14 @@
 
 <script>
 import Highcharts from 'highcharts'
+import highchartsMore from 'highcharts/highcharts-more'
+highchartsMore(Highcharts)
+import 'highcharts/modules/exporting'
 import {gv, ScanGroup} from '../global/common_sym'
 import {addGraph} from '../plugins/graph_scan'
 
-//  add pan event handler to highcharts for drawing graph to respond with shifting chart after zooming in
+//  customize pan event handler to highcharts for drawing graph to respond with shifting chart after zooming in
+// this is similar to decorator of python ,'function' wrap  H.Chart.prototype.pan function to insert addGraph(gv.Chart)
 (function (H) {
   H.wrap(H.Chart.prototype, 'pan', function (proceed) {
     console.log('pannig...')
@@ -60,14 +64,13 @@ export default {
           events: {
             selection: function (event) { gv.graphSelected = true },
             redraw: function () {
-              if (gv.graphSelected == true) {
+              if (gv.graphSelected === true) {
                 addGraph(gv.Chart)// 'this' is not vue here,so could only directly import addGraph
                 gv.graphSelected = false
               }
             }
           }, // no vue context,can't be called
           animation: false,
-          type: 'spline',
           backgroundColor: '#F5F5F5',
           height: parent.$el.clientHeight, // fist show still need this method,resize no work here
           width: null,
@@ -99,15 +102,39 @@ export default {
         },
         series: [{
           name: '复权价格',
-          data: fuquanArray
-
+          data: fuquanArray,
+          type: 'spline'
         }
+
+        /*    // area always filled with color,no independent borderline color,  even opaque can't help,
+              // fill-color like similar parameter can't be found, so abandon temporary
+        {
+          name: '矩形',
+          type: 'polygon',
+          color: Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.2).get(),
+          data: [
+            {x: ScanGroup[gv.StockIndex][gv.graph][0][gv.left],
+              y: ScanGroup[gv.StockIndex][gv.graph][0][gv.top]},
+
+            {x: ScanGroup[gv.StockIndex][gv.graph][0][gv.right],
+              y: ScanGroup[gv.StockIndex][gv.graph][0][gv.top]},
+
+            {x: ScanGroup[gv.StockIndex][gv.graph][0][gv.right],
+              y: ScanGroup[gv.StockIndex][gv.graph][0][gv.bottom]},
+
+            {x: ScanGroup[gv.StockIndex][gv.graph][0][gv.left],
+              y: ScanGroup[gv.StockIndex][gv.graph][0][gv.bottom]}
+
+          ]
+        }
+        */
+
         ]
 
       }
       // pan,event handler for shifting when in zooming in status
 
-      gv.Chart = new Highcharts.chart(this.$el, options)
+      gv.Chart = new Highcharts.Chart(this.$el, options)
       this.$addGraph(gv.Chart)
     }
   }

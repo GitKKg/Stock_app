@@ -127,7 +127,7 @@ export function addGraph (chart) {
 
   for (let g of ScanGroup[gv.StockIndex][gv.graph]) {
     console.log('gv.graph')
-    if (g[gv.shape] == 'rect') {
+    if (g[gv.shape] === 'rect') {
       console.log('gv.rect')
       console.log(g)
       console.log(g[gv.left])
