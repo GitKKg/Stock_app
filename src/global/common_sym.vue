@@ -82,7 +82,7 @@ var RectangleSetting = {
 
 var TriangleUpSetting = {
   TriangleUpChecked: false,
-  TopHits: 3,
+  TopHits: 2,
   TopHitsMin: 2,
   TopHitsMax: 10,
   TopFuzzy: 0.5,
@@ -91,7 +91,7 @@ var TriangleUpSetting = {
   BottomFuzzy: 0.5,
   BottomFuzzyMin: 0.2,
   BottomFuzzyMax: 1,
-  BottomHits: 3,
+  BottomHits: 2,
   BottomHitsMin: 2,
   BottomHitsMax: 10,
   minHeight: 10,
@@ -112,7 +112,7 @@ var TriangleUpSetting = {
 }
 var TriangleDownSetting = {
   TriangleDownChecked: false,
-  TopHits: 3,
+  TopHits: 2,
   TopHitsMin: 2,
   TopHitsMax: 10,
   TopFuzzy: 0.5,
@@ -121,7 +121,7 @@ var TriangleDownSetting = {
   BottomFuzzy: 0.5,
   BottomFuzzyMin: 0.2,
   BottomFuzzyMax: 1,
-  BottomHits: 3,
+  BottomHits: 2,
   BottomHitsMin: 2,
   BottomHitsMax: 10,
   minHeight: 10,

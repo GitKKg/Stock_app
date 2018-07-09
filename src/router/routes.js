@@ -32,18 +32,17 @@ export default [
         meta: {
           keepAlive: true // keep data
         }
+      },
+      {
+        path: 'triangleUp',
+        name: 'scan_triangle_up',
+        component: () => import('layouts/scan_triangle_up'),
+        meta: {
+          keepAlive: true // keep data
+        }
       }
 
     ]
-
-  },
-  {
-    path: '/triangle1',
-    name: 'scan_triangle1',
-    component: () => import('layouts/scan_rectangle'),
-    meta: {
-      keepAlive: false
-    }
 
   },
 

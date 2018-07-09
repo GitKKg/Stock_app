@@ -21,9 +21,10 @@
       />
       <q-tab
         icon="trending_up"
-        name="triangle1"
+        name="triangleUp"
         label="上升三角形设定"
-        to="/scan_route/rectangle"
+        to="/scan_route/triangleUp"
+        @click="onTriangleUp"
         exact
         slot="title"
       />
@@ -56,8 +57,8 @@ export default {
     }
   },
   methods: {
-    onTriangle2: function () {
-      this.$router.push({path: '/'})
+    onTriangleUp: function () {
+      this.$router.push({path: '/scan_route/triangleUp'})
     },
     onOverall: function () {
       this.$router.push({path: '/scan_route'})

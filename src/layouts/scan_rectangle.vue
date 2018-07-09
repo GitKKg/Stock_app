@@ -142,13 +142,13 @@
 
 <script>
 import { required, between } from 'vuelidate/lib/validators'
-import {gv,RectangleSetting} from '../global/common_sym'
+import {gv, RectangleSetting} from '../global/common_sym'
 export default {
   name: 'scan_rectangle',
   data () {
     return {
       RectangleSetting: RectangleSetting,
-      gv:gv
+      gv: gv
     }
   },
   methods: {
@@ -185,7 +185,7 @@ export default {
       } else if (this.RectangleSetting[prop_name] < this.RectangleSetting[prop_name + 'Min']) {
         this.RectangleSetting[prop_name] = this.RectangleSetting[prop_name + 'Min']
       }
-    },
+    }
   },
   activated: function () {
     console.log('activated')

@@ -4,19 +4,42 @@
 
 <script>
 import Highcharts from 'highcharts'
-import highchartsMore from 'highcharts/highcharts-more'
-highchartsMore(Highcharts)
-import 'highcharts/modules/exporting'
+
+// add these two to support ploygon series data
+// import highchartsMore from 'highcharts/highcharts-more'
+// highchartsMore(Highcharts)
+
+// add these two to support mapNavigation with mousewheel zooming
+import LoadHighmaps from 'highcharts/modules/map'
+LoadHighmaps(Highcharts)
+
+// with these two, support a button for graph saving as file to local
+import Exporting from 'highcharts/modules/exporting'
+Exporting(Highcharts)
+
 import {gv, ScanGroup} from '../global/common_sym'
 import {addGraph} from '../plugins/graph_scan'
 
 //  customize pan event handler to highcharts for drawing graph to respond with shifting chart after zooming in
 // this is similar to decorator of python ,'function' wrap  H.Chart.prototype.pan function to insert addGraph(gv.Chart)
+// pan function defined in highcharts.src.js
 (function (H) {
   H.wrap(H.Chart.prototype, 'pan', function (proceed) {
     console.log('pannig...')
     addGraph(gv.Chart)
     proceed.call(this, arguments[1], arguments[2])
+  })
+})(Highcharts); // ';' is required!
+
+// mapZoom function defined in map.src.js
+(function (H) {
+  H.wrap(H.Chart.prototype, 'mapZoom', function (proceed) {
+    console.log('mapZoom...')
+    proceed.call(this, arguments[1], arguments[2])
+    addGraph(gv.Chart)
+    if (!(this.resetZoomButton)) { // 'this' here is highchart not vue
+      this.showResetZoom()
+    }
   })
 })(Highcharts)
 
@@ -60,6 +83,13 @@ export default {
         })
 
       var options = {
+
+        // enable mousewheel zoom ,from highmaps
+        mapNavigation: {
+          enabled: true,
+          enableButtons: false,
+          mouseWheelSensitivity: 1.1 //  1.1 original default
+        },
         chart: {
           events: {
             selection: function (event) { gv.graphSelected = true },
@@ -92,7 +122,7 @@ export default {
           text: ScanGroup[gv.StockIndex][gv.code] + '\t' + ScanGroup[gv.StockIndex][gv.name] // 标题
         },
         subtitle: {
-          text: '鼠标选中区域可以放大，放大后按住shift进行左右拖动，退出放大按右上角reset zoom 按钮'
+          text: '鼠标选中区域可以放大，滚轮可放大缩小,放大后按住shift进行左右拖动，退出放大按右上角reset zoom 按钮'
         },
         xAxis: {
           categories: ScanGroup[gv.StockIndex][gv.dates]

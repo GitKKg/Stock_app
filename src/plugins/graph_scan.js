@@ -61,10 +61,10 @@ function scan_start_test () {
     TriangleUpSetting.TopFuzzy / 100,
     TriangleUpSetting.BottomHits,
     TriangleUpSetting.BottomFuzzy / 100,
-    TriangleUpSetting.maxHeight,
-    TriangleUpSetting.minHeight,
+    TriangleUpSetting.maxHeight / 100,
+    TriangleUpSetting.minHeight / 100,
     TriangleUpSetting.rightMargin,
-    TriangleUpSetting.rightDrawback,
+    TriangleUpSetting.rightDrawback / 100,
     TriangleUpSetting.BottomSlope / 100
   ]
   let triangle2_keys = ['enable', 'tophits', 'topfuzzy', 'bottomhits', 'bottomfuzzy', 'high', 'low',
@@ -75,10 +75,10 @@ function scan_start_test () {
     TriangleDownSetting.TopFuzzy / 100,
     TriangleDownSetting.BottomHits,
     TriangleDownSetting.BottomFuzzy / 100,
-    TriangleDownSetting.maxHeight,
-    TriangleDownSetting.minHeight,
+    TriangleDownSetting.maxHeight / 100,
+    TriangleDownSetting.minHeight / 100,
     TriangleDownSetting.rightMargin,
-    TriangleDownSetting.rightDrawback,
+    TriangleDownSetting.rightDrawback / 100,
     TriangleDownSetting.TopSlope / 100
   ]
   console.log('hello scan_start_test', formattedString)
@@ -170,6 +170,9 @@ export function addGraph (chart) {
       }).addClass('stockgraph')
         .add()
       */
+    } else if (g[gv.shape] === 'tri1') {
+
+
     }
   }
 }
