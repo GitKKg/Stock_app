@@ -77,7 +77,7 @@ export default {
           reflow: true,
           zoomType: 'x',
           panning: true,
-          panKey: 'ctrl',
+          panKey: 'shift',
           resetZoomButton: {
             // 按钮定位
             position: {
@@ -90,6 +90,9 @@ export default {
         },
         title: {
           text: ScanGroup[gv.StockIndex][gv.code] + '\t' + ScanGroup[gv.StockIndex][gv.name] // 标题
+        },
+        subtitle: {
+          text: '鼠标选中区域可以放大，放大后按住shift进行左右拖动，退出放大按右上角reset zoom 按钮'
         },
         xAxis: {
           categories: ScanGroup[gv.StockIndex][gv.dates]

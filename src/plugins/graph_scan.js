@@ -2,8 +2,6 @@
 
 import {gv, OverallSetting, RectangleSetting, TriangleUpSetting, TriangleDownSetting, ScanGroup} from '../global/common_sym'
 import { date } from 'quasar'
-import io from 'socket.io-client'
-import axios from 'axios'
 import JQuery from 'jquery'
 function zip () {
   var args = [].slice.call(arguments)
@@ -120,6 +118,7 @@ function scan_start_test () {
   })
 }
 
+// export again,no choice,got to ref in highchart callback such non-vue context
 export function addGraph (chart) {
   // no choice, vue get no easy way to op element, think highcharts intend not let vue op its el too,so... jquery
   // of course ,it all is blamed to the design that highcharts svg is independent to series
@@ -142,6 +141,23 @@ export function addGraph (chart) {
 
       chart.renderer.rect(
         xAxis.toPixels(g[gv.left]),
+        yAxis.toPixels(g[gv.top]),
+        xAxis.toPixels(g[gv.right]) - xAxis.toPixels(g[gv.left]),
+
+        // bottom - top,just so fuck anti-intuitive!
+        // ever forgotten to float convert in server side,int type loss data,now correct and available
+        yAxis.toPixels(g[gv.bottom]) - yAxis.toPixels(g[gv.top]),
+        5
+      ).attr({
+        'stroke-width': 2,
+        stroke: 'black',
+        zIndex: 0
+      }).addClass('stockgraph')
+        .add()
+
+      /* ok too, but not neat
+      chart.renderer.rect(
+        xAxis.toPixels(g[gv.left]),
         yAxis.toPixels(chart.series[0].data[g[gv.hit_top][0]].y),
         xAxis.toPixels(g[gv.right]) - xAxis.toPixels(g[gv.left]),
         // bottom - top,just so fuck anti-intuitive!
@@ -153,6 +169,7 @@ export function addGraph (chart) {
         zIndex: 0
       }).addClass('stockgraph')
         .add()
+      */
     }
   }
 }
