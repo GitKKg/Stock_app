@@ -102,7 +102,7 @@
             <q-item-side icon="arrow_downward"><label>右边界点数最小值</label></q-item-side>
             <q-item-main>
 
-              <q-input  :disable="!TriangleUpSetting.TriangleUpChecked" v-model="TriangleUpSetting.rightMargin"  @blur="RangeCheck('rightMargin')" type="number" suffix="%" stack-label="最小3最大10" />
+              <q-input  :disable="!TriangleUpSetting.TriangleUpChecked" v-model="TriangleUpSetting.rightMargin"  @blur="RangeCheck('rightMargin')" type="number" suffix="day" stack-label="最小3最大10" />
             </q-item-main>
           </q-item>
 
@@ -242,7 +242,7 @@ export default {
       },
       rightMargin: {
         required,
-        between: between(3, 5)
+        between: between(3, 10)
       },
       rightDrawback: {
         required,

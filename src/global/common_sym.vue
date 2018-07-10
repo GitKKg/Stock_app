@@ -31,7 +31,10 @@ var gv = {
   top: 3,
   bottom: 4,
   hit_top: 5,
-  hit_bottom: 6
+  hit_bottom: 6,
+  level: 3,
+  base: 4,
+  slope: 5
 }
 var OverallSetting = {
   ScanDateStart: new Date(),
@@ -100,10 +103,10 @@ var TriangleUpSetting = {
   maxHeight: 25,
   maxHeightMax: 30,
   maxHeightMin: 15,
-  rightMargin: 3,
+  rightMargin: 6,
   rightMarginMax: 10,
   rightMarginMin: 3,
-  rightDrawback: 5,
+  rightDrawback: 6,
   rightDrawbackMin: 3,
   rightDrawbackMax: 8,
   BottomSlope: 0.15,
@@ -130,10 +133,10 @@ var TriangleDownSetting = {
   maxHeight: 25,
   maxHeightMax: 30,
   maxHeightMin: 15,
-  rightMargin: 3,
+  rightMargin: 6,
   rightMarginMax: 10,
   rightMarginMin: 3,
-  rightDrawback: 5,
+  rightDrawback: 6,
   rightDrawbackMin: 3,
   rightDrawbackMax: 8,
   TopSlope: 0.15,

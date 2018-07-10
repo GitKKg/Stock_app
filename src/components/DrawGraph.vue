@@ -36,6 +36,7 @@ import {addGraph} from '../plugins/graph_scan'
   H.wrap(H.Chart.prototype, 'mapZoom', function (proceed) {
     console.log('mapZoom...')
     proceed.call(this, arguments[1], arguments[2])
+    // behold, this order matters, or else, response to zoom will not catch up timely
     addGraph(gv.Chart)
     if (!(this.resetZoomButton)) { // 'this' here is highchart not vue
       this.showResetZoom()

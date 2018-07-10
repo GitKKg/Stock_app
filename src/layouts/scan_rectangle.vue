@@ -102,7 +102,7 @@
             <q-item-side icon="arrow_downward"><label>右边界点数最小值</label></q-item-side>
             <q-item-main>
 
-              <q-input  :disable="!RectangleSetting.RectChecked" v-model="RectangleSetting.rightMargin"  @blur="RangeCheck('rightMargin')" type="number" suffix="%" stack-label="最小3最大10" />
+              <q-input  :disable="!RectangleSetting.RectChecked" v-model="RectangleSetting.rightMargin"  @blur="RangeCheck('rightMargin')" type="number" suffix="day" stack-label="最小3最大10" />
             </q-item-main>
           </q-item>
 

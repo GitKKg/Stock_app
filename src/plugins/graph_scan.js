@@ -126,6 +126,8 @@ export function addGraph (chart) {
 
   for (let g of ScanGroup[gv.StockIndex][gv.graph]) {
     console.log('gv.graph')
+    var xAxis = chart.xAxis[0]
+    var yAxis = chart.yAxis[0]
     if (g[gv.shape] === 'rect') {
       console.log('gv.rect')
       console.log(g)
@@ -134,8 +136,6 @@ export function addGraph (chart) {
       console.log(g[gv.right])
       console.log(g[gv.top])
 
-      var xAxis = chart.xAxis[0]
-      var yAxis = chart.yAxis[0]
       console.log(yAxis.toPixels(chart.series[0].data[g[gv.hit_top][0]].y))
       console.log(yAxis.toPixels(chart.series[0].data[g[gv.hit_bottom][0]].y))
 
@@ -171,14 +171,26 @@ export function addGraph (chart) {
         .add()
       */
     } else if (g[gv.shape] === 'tri1') {
-
-
+      console.log('tri1 found!')
+      chart.renderer.path(
+        ['M', xAxis.toPixels(g[gv.left]), yAxis.toPixels(g[gv.level]),
+          'L', xAxis.toPixels(g[gv.left]), yAxis.toPixels(g[gv.base]),
+          'L', xAxis.toPixels(g[gv.right]),
+          yAxis.toPixels(g[gv.base] + g[gv.slope] * (g[gv.right] - g[gv.left])),
+          'L', xAxis.toPixels(g[gv.right]), yAxis.toPixels(g[gv.level]),
+          'L', xAxis.toPixels(g[gv.left]), yAxis.toPixels(g[gv.level])
+        ]
+      ).attr({
+        'stroke-width': 2,
+        stroke: 'red'
+      }).addClass('stockgraph')
+        .add()
     }
   }
 }
 // leave the export, even if you don't use it
 export default ({ Vue }) => {
   // something to do
-  Vue.prototype.$scan_start_test = scan_start_test,
+  Vue.prototype.$scan_start_test = scan_start_test ,
   Vue.prototype.$addGraph = addGraph
 }
