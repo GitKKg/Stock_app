@@ -32,7 +32,7 @@
         icon="trending_down"
         name="triangle2"
         label="下降三角形设定"
-        @click="onTriangle2"
+        @click="onTriangleDown"
         to="/"
         exact
         slot="title"
@@ -57,6 +57,9 @@ export default {
     }
   },
   methods: {
+    onTriangleDown: function () {
+      this.$router.push({path: '/scan_route/triangleDown'})
+    },
     onTriangleUp: function () {
       this.$router.push({path: '/scan_route/triangleUp'})
     },

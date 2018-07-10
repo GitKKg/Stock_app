@@ -40,6 +40,14 @@ export default [
         meta: {
           keepAlive: true // keep data
         }
+      },
+      {
+        path: 'triangleDown',
+        name: 'scan_triangle_down',
+        component: () => import('layouts/scan_triangle_down'),
+        meta: {
+          keepAlive: true // keep data
+        }
       }
 
     ]

@@ -185,12 +185,29 @@ export function addGraph (chart) {
         stroke: 'red'
       }).addClass('stockgraph')
         .add()
+    } else if (g[gv.shape] === 'tri2') {
+      console.log('tri2 found!')
+      chart.renderer.path(
+        ['M', xAxis.toPixels(g[gv.left]), yAxis.toPixels(g[gv.level]),
+          'L', xAxis.toPixels(g[gv.left]), yAxis.toPixels(g[gv.base]),
+          'L', xAxis.toPixels(g[gv.right]),
+          yAxis.toPixels(g[gv.base] + g[gv.slope] * (g[gv.right] - g[gv.left])),
+          'L', xAxis.toPixels(g[gv.right]), yAxis.toPixels(g[gv.level]),
+          'L', xAxis.toPixels(g[gv.left]), yAxis.toPixels(g[gv.level])
+        ]
+      ).attr({
+        'stroke-width': 2,
+        stroke: 'red'
+      }).addClass('stockgraph')
+        .add()
     }
+
+
   }
 }
 // leave the export, even if you don't use it
 export default ({ Vue }) => {
   // something to do
-  Vue.prototype.$scan_start_test = scan_start_test ,
+  Vue.prototype.$scan_start_test = scan_start_test,
   Vue.prototype.$addGraph = addGraph
 }
