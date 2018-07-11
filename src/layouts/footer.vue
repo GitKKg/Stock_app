@@ -1,5 +1,5 @@
 <template>
-  <q-layout-footer >
+  <q-layout-footer class="bg-indigo-1">
     <p v-if="gv.current_sym_spidered!=''">{{gv.current_sym_spidered}}</p>
     <qprogress></qprogress>
 

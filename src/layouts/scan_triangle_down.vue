@@ -160,12 +160,16 @@ export default {
     }
   },
   methods: {
+    Exit: function () {
+      this.$router.push({path: '/'})
+    },
     StartScaning: function () {
       this.$v.validationGroup.$touch()
       if (this.$v.validationGroup.$error) {
         this.$q.notify('设定值非法，请重设')
       } else {
         this.$router.push({path: '/'})
+        this.$scan_start_test()
       }
     },
     RangeCheck: function (prop_name) {
@@ -219,7 +223,7 @@ export default {
     this.$v.validationGroup.$touch()
     if (this.$v.validationGroup.$error) {
       this.$q.notify('设定值非法，请重设')
-      gv.scan_needRecheck_Tab = 'rectangle'
+      gv.scan_needRecheck_Tab = 'triangleDown'
       next(false)
     } else {
       this.$route.meta.keepAlive = true

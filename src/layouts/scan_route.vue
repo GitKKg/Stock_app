@@ -30,7 +30,7 @@
       />
       <q-tab
         icon="trending_down"
-        name="triangle2"
+        name="triangleDown"
         label="下降三角形设定"
         @click="onTriangleDown"
         to="/"
@@ -53,7 +53,7 @@ export default {
   data: function () {
     return {
       gv: gv,
-      OverallSetting: OverallSetting,
+      OverallSetting: OverallSetting
     }
   },
   methods: {

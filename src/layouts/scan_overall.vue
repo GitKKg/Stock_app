@@ -116,7 +116,7 @@ export default {
   name: 'scan_overall',
   data: function () {
     return {
-      OverallSetting: OverallSetting,
+      OverallSetting: OverallSetting
     }
   },
   activated: function () {
@@ -136,6 +136,9 @@ export default {
     this.$set(this.OverallSetting, 'ScanDateEnd', OverallSetting.ScanDateEnd)
   },
   methods: {
+    Exit: function () {
+      this.$router.push({path: '/'})
+    },
     StartScaning: function () {
       this.$v.validationGroup.$touch()
       if (this.$v.validationGroup.$error) {

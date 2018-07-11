@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh Lpr lFf" >
+  <q-layout view="hHH Lpr lff" >
     <qheader></qheader>
     <qleft_drawer></qleft_drawer>
 
@@ -58,7 +58,7 @@ export default {
       if (gv.StockIndex != -1) {
         console.log('reflow!!!!')
         gv.Chart.setSize(null, size.height, true)// size.height
-        //this.$addGraph(gv.Chart)
+        this.$addGraph(gv.Chart)
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <q-layout-header>
+  <q-layout-header class="bg-light-blue">
     <q-btn-group class="row">
       <q-btn label="显示扫描列表" icon="list" color="red" @click="onshowlist" />
       <q-btn label="加载数据库" icon="folder_open" color="red" @click="onOpenDB"/>
