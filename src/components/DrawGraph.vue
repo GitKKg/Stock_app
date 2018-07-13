@@ -169,6 +169,7 @@ export default {
       // pan,event handler for shifting when in zooming in status
 
       gv.Chart = new Highcharts.Chart(this.$el, options)
+      console.log('Highcharts Chart')
       this.$addGraph(gv.Chart)
     }
   }

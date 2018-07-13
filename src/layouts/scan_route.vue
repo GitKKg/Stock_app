@@ -78,7 +78,7 @@ export default {
   updated: function () {
     console.log('scan_route_Tab beforeUpdate')
     console.log(gv.scan_route_Tab)
-    if (gv.scan_needRecheck_Tab != undefined) {
+    if (gv.scan_needRecheck_Tab !== undefined) {
       console.log('force reselect')
       console.log(gv.scan_needRecheck_Tab)
       gv.scan_route_Tab = gv.scan_needRecheck_Tab

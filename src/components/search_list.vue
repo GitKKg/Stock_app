@@ -29,10 +29,13 @@ export default {
       console.log('showGraph')
       console.log(name)
       this.$q.notify(index + '号' + code + name + '入选！')
-      if (gv.StockIndex == -1) {
+      if (gv.StockIndex === -1) {
         gv.StockIndex = index
       } else {
         gv.StockIndex = index
+        // note:private function of highcharts ,defined in higcharts.src.js,so,if version updates, take care
+        // added to recover normal view when switching to another stock in zoom in status
+        gv.Chart.zoom()
         var fuquanArray = ScanGroup[index][gv.fuquan_averages].slice()
         ScanGroup[index][gv.topSeq]
           .map(day => {
@@ -66,6 +69,7 @@ export default {
         // gv.Chart.setSize(null, null, false)
 
         gv.Chart.redraw(false)
+        console.log('$addGraph')
         console.log(gv.Chart.series[0])
         this.$addGraph(gv.Chart)
       }
@@ -77,5 +81,5 @@ export default {
 <style scoped>
   .q-list {
 //    background-color: blue;
-  };
+  }
 </style>

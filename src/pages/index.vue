@@ -1,7 +1,8 @@
 <template>
   <q-page class="flex bg-indigo-1 flex-center">
     <div class="bg-indigo-1">
-        <div class="q-headline text-center">that is,nothing that we imagine is absolutely impossible</div>
+      <br/>
+      <div class="q-headline text-center"><span style="font-family:'French Script MT';font-size: 200%">That is,nothing that we imagine is absolutely impossible</span></div>
         <div class="text-right text-italic">--David Hume</div>
     </div>
     <div>

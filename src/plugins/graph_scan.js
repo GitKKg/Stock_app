@@ -201,8 +201,6 @@ export function addGraph (chart) {
       }).addClass('stockgraph')
         .add()
     }
-
-
   }
 }
 // leave the export, even if you don't use it
