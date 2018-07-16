@@ -6,12 +6,13 @@
 import Highcharts from 'highcharts'
 
 // add these two to support ploygon series data
-// import highchartsMore from 'highcharts/highcharts-more'
-// highchartsMore(Highcharts)
-
+import highchartsMore from 'highcharts/highcharts-more'
+highchartsMore(Highcharts)
+import histogramBellcurve from 'highcharts/modules/histogram-bellcurve'
+histogramBellcurve(Highcharts)
 // add these two to support mapNavigation with mousewheel zooming
-import LoadHighmaps from 'highcharts/modules/map'
-LoadHighmaps(Highcharts)
+import map from 'highcharts/modules/map'
+map(Highcharts)
 
 // with these two, support a button for graph saving as file to local
 import Exporting from 'highcharts/modules/exporting'
@@ -129,15 +130,28 @@ export default {
           categories: ScanGroup[gv.StockIndex][gv.dates]
 
         },
-        yAxis: {
+        yAxis: [{
           title: {
             text: 'RMB' // y 轴标题
           }
         },
+        {
+          title: {
+            text: '成交量' // y 轴标题
+          }
+        }
+        ],
         series: [{
           name: '复权价格',
           data: fuquanArray,
           type: 'spline'
+        },
+        {
+          name: '成交量',
+          data: ScanGroup[gv.StockIndex][gv.shares],
+          color: Highcharts.Color('#0000FF').setOpacity(0.1).get(), // defined in highcarts.src.js
+          type: 'histogram',
+          yAxis: 1
         }
 
         /*    // area always filled with color,no independent borderline color,  even opaque can't help,

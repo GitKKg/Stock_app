@@ -37,6 +37,7 @@ export default {
         // added to recover normal view when switching to another stock in zoom in status
         gv.Chart.zoom()
         var fuquanArray = ScanGroup[index][gv.fuquan_averages].slice()
+        var VolArray = ScanGroup[index][gv.shares].slice()
         ScanGroup[index][gv.topSeq]
           .map(day => {
             fuquanArray[day] = {
@@ -65,6 +66,7 @@ export default {
         // false means passing ref,but even if passing value is merging points status not overwriting!shit!
         // no doc detail specify this 2nd anti-intuitive setting!
         gv.Chart.series[0].setData(fuquanArray, false, false, false)// 3rd must be false!or else they are merged not overwrited!
+        gv.Chart.series[1].setData(VolArray, false, false, false)
         gv.Chart.setTitle({text: ScanGroup[index][gv.code] + '\t' + ScanGroup[index][gv.name]}, null, false)
         // gv.Chart.setSize(null, null, false)
 
